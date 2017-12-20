@@ -12,7 +12,8 @@ import com.zigzagtest.croquiscom.zigzagtest.databinding.ActivityFilterBinding;
  */
 
 public class FilterActivity extends AppCompatActivity {
-    ActivityFilterBinding b;
+    private static final String TAG = FilterActivity.class.getSimpleName();
+    private ActivityFilterBinding b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,34 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="64dp">
 
         <TextView
             android:id="@+id/mRankNumberTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="52dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginTop="8dp"
             android:text="0000"
+            android:textSize="20sp"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/mShopImageView"
+        <FrameLayout
+            android:id="@+id/mShopImageViewFrame"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="6dp"
+            android:layout_marginLeft="6dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/mRankNumberTextView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="6dp"
+                android:src="@drawable/ic_launcher_background"/>
+
+            <ImageView
+                android:id="@+id/mShopImageView"
+                android:src="@drawable/shop_image_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
 
         <TextView
             android:id="@+id/mShopNameTextView"
@@ -36,6 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="임블리"
+            android:textSize="18dp"
+            android:textColor="@color/colorWeekText"
             app:layout_constraintStart_toStartOf="@+id/mStyleTextView2"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,28 +61,31 @@
             android:id="@+id/mAgeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
             android:text="러블리"
             app:layout_constraintBottom_toBottomOf="@+id/mStyleTextView1"
-            app:layout_constraintTop_toTopOf="@+id/mStyleTextView1"
-            tools:layout_editor_absoluteX="184dp" />
+            app:layout_constraintStart_toEndOf="@+id/mStyleTextView1"
+            app:layout_constraintTop_toTopOf="@+id/mStyleTextView1" />
 
         <TextView
             android:id="@+id/mStyleTextView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
             android:text="페미닌"
             app:layout_constraintBottom_toBottomOf="@+id/mStyleTextView2"
-            app:layout_constraintTop_toTopOf="@+id/mStyleTextView2"
-            tools:layout_editor_absoluteX="144dp" />
+            app:layout_constraintStart_toEndOf="@+id/mStyleTextView2"
+            app:layout_constraintTop_toTopOf="@+id/mStyleTextView2" />
 
         <TextView
             android:id="@+id/mStyleTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="3dp"
             android:text="10대"
-            app:layout_constraintStart_toEndOf="@+id/mShopImageView"
-            tools:layout_editor_absoluteY="35dp" />
+            app:layout_constraintStart_toEndOf="@+id/mShopImageViewFrame"
+            app:layout_constraintTop_toBottomOf="@+id/mShopNameTextView" />
 
 
     </android.support.constraint.ConstraintLayout>

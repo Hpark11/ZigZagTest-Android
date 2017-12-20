@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.zigzagtest.croquiscom.zigzagtest.R;
 import com.zigzagtest.croquiscom.zigzagtest.databinding.ItemShopBinding;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class ShopListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return mShopArrayList.size();
     }
 
     @Override
@@ -44,9 +45,19 @@ public class ShopListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ShopViewHolder shopViewHolder = new ShopViewHolder(view);
-        return view;
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
+        ShopViewHolder shopViewHolder;
+
+        if (convertView == null) {
+            convertView = mInflator.inflate(R.layout.item_shop, viewGroup, false);
+            shopViewHolder = new ShopViewHolder(convertView);
+            convertView.setTag(shopViewHolder);
+        } else {
+            shopViewHolder = (ShopViewHolder) convertView.getTag();
+        }
+
+        shopViewHolder.setDataIntoUIControls(mShopArrayList.get(position), position + 1);
+        return convertView;
     }
 
     private class ShopViewHolder {
@@ -54,6 +65,15 @@ public class ShopListAdapter extends BaseAdapter {
 
         public ShopViewHolder(View itemView) {
             b = DataBindingUtil.bind(itemView);
+        }
+
+        public void setDataIntoUIControls(final Shop shop, int rank) {
+            b.mRankNumberTextView.setText("" + rank);
+            b.mShopNameTextView.setText(shop.name);
+            b.mStyleTextView1.setText(shop.style.length > 0 ? shop.style[0] : "");
+            b.mStyleTextView2.setText(shop.style.length > 1 ? shop.style[1] : "");
+
+            //b.mShopImageView.setDr
         }
     }
 
