@@ -20,8 +20,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:id="@+id/mShopImageViewFrame"
+        <ImageView
+            android:id="@+id/mShopImageView"
+            android:src="@drawable/shop_image_frame"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="8dp"
@@ -29,21 +30,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/mRankNumberTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            >
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="6dp"
-                android:src="@drawable/ic_launcher_background"/>
-
-            <ImageView
-                android:id="@+id/mShopImageView"
-                android:src="@drawable/shop_image_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </FrameLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -54,11 +41,11 @@
             android:text="임블리"
             android:textSize="18dp"
             android:textColor="@color/colorWeekText"
-            app:layout_constraintStart_toStartOf="@+id/mStyleTextView2"
+            app:layout_constraintStart_toStartOf="@+id/mAgeTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/mAgeTextView"
+            android:id="@+id/mStyleTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
@@ -73,18 +60,18 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:text="페미닌"
-            app:layout_constraintBottom_toBottomOf="@+id/mStyleTextView2"
-            app:layout_constraintStart_toEndOf="@+id/mStyleTextView2"
-            app:layout_constraintTop_toTopOf="@+id/mStyleTextView2" />
+            app:layout_constraintBottom_toBottomOf="@+id/mAgeTextView"
+            app:layout_constraintStart_toEndOf="@+id/mAgeTextView"
+            app:layout_constraintTop_toTopOf="@+id/mAgeTextView" />
 
         <TextView
-            android:id="@+id/mStyleTextView2"
+            android:id="@+id/mAgeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="3dp"
             android:text="10대"
-            app:layout_constraintStart_toEndOf="@+id/mShopImageViewFrame"
+            app:layout_constraintStart_toEndOf="@+id/mShopImageView"
             app:layout_constraintTop_toBottomOf="@+id/mShopNameTextView" />
 
 

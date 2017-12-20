@@ -74,11 +74,6 @@ public class RoundedImageDrawable extends Drawable {
         return mBitmapHeight;
     }
 
-    public void setAntiAlias(boolean aa) {
-        mPaint.setAntiAlias(aa);
-        invalidateSelf();
-    }
-
     @Override
     public void setFilterBitmap(boolean filter) {
         mPaint.setFilterBitmap(filter);

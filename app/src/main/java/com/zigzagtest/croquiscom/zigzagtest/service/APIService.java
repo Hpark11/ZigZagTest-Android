@@ -1,6 +1,8 @@
 package com.zigzagtest.croquiscom.zigzagtest.service;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop;
 
@@ -8,14 +10,37 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by croquiscom on 2017. 12. 20..
  */
 final public class APIService {
     private static final String path = "shopList.json";
+
+    public static Bitmap getBitmapFromUrl(String stringUrl) {
+        Bitmap bitmap = null;
+        HttpsURLConnection connection = null;
+        try {
+            URL url = new URL(stringUrl);
+            connection = (HttpsURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+
+            InputStream inputStream = connection.getInputStream();
+            bitmap = BitmapFactory.decodeStream(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(connection != null) connection.disconnect();
+        }
+        return bitmap;
+    }
 
     public static String getWeek(Context context) {
         String result = "";
