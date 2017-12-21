@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ZigZagTest</string>
+
+    <string name="string_ranking_label">쇼핑몰 랭킹</string>
+    <string name="string_filter_label">쇼핑몰 필터</string>
+
+    <string name="string_initialize">초기화</string>
 </resources>

@@ -19,7 +19,6 @@ final public class FilterService {
         "30대 후반"
     };
 
-
     public static String getRepresentativeAgesData(final int[] ages) {
         String result = "";
         String holder = "";
@@ -29,11 +28,10 @@ final public class FilterService {
                 String ageGroup = AGES[i].split(" ")[0];
 
                 if(ages[i] == 1) {
-                    if (result.length() != 0) {
-                        result += " ";
-                    }
-
                     if (!holder.equals(ageGroup)) {
+                        if (result.length() != 0) {
+                            result += " ";
+                        }
                         result += ageGroup;
                         holder = ageGroup;
                     }

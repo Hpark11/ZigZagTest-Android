@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".rankinglist.RankingListActivity">
+        <activity android:name=".rankinglist.RankingListActivity"
+            android:label="쇼핑몰 랭킹">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

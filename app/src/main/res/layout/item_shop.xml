@@ -72,7 +72,8 @@
             android:layout_marginTop="3dp"
             android:text="10대"
             app:layout_constraintStart_toEndOf="@+id/mShopImageView"
-            app:layout_constraintTop_toBottomOf="@+id/mShopNameTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/mShopNameTextView"
+            android:background="@drawable/shop_padded_text_frame"/>
 
 
     </android.support.constraint.ConstraintLayout>

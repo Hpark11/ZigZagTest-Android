@@ -63,10 +63,7 @@ public class ShopListAdapter extends BaseAdapter {
         } else {
             shopViewHolder = (ShopViewHolder) convertView.getTag();
             shopViewHolder.b.mShopImageView.setImageBitmap(null);
-            if (shopViewHolder.task.isAlive()) {
-                shopViewHolder.task.interrupt();
-                shopViewHolder.task = null;
-            }
+            shopViewHolder.verifyTaskStateAndInturrupt();
         }
 
         shopViewHolder.setDataIntoUIControls(mShopArrayList.get(position), position + 1);
@@ -81,6 +78,39 @@ public class ShopListAdapter extends BaseAdapter {
             b = DataBindingUtil.bind(itemView);
         }
 
+        public void verifyTaskStateAndInturrupt() {
+            if (task != null && task.isAlive()) {
+                task.interrupt();
+                task = null;
+            }
+        }
+
+        public void generateNewImageDataTask(final String stringUrl) {
+            task = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Bitmap bitmap = null;
+                    try {
+                        bitmap = APIService.getBitmapFromUrl(stringUrl);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (bitmap != null) {
+                            final Bitmap finalBitmap = bitmap;
+                            ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    b.mShopImageView.setImageDrawable(new RoundedImageDrawable(finalBitmap));
+                                    mImageCache.addBitmapToMemoryCache(stringUrl, finalBitmap);
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+            task.start();
+        }
+
         public void setDataIntoUIControls(final Shop shop, int rank) {
             b.mRankNumberTextView.setText(String.valueOf(rank));
             b.mShopNameTextView.setText(shop.name);
@@ -91,35 +121,13 @@ public class ShopListAdapter extends BaseAdapter {
             String replacedStr = shop.url.replaceAll("(http://www.|www.|http://)([\\w-]+)([.\\w/]+)", "$2");
             final String stringUrl = "https://cf.shop.s.zigzag.kr/images/" + replacedStr + ".jpg";
 
-            final Bitmap bitmap = mImageCache.getBitmapFromMemCache(stringUrl);
+            final Bitmap imageBitmap = mImageCache.getBitmapFromMemCache(stringUrl);
 
-            task = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Bitmap bitmap1 = bitmap;
-                    try {
-
-                        if (bitmap1 == null) {
-                            bitmap1 = APIService.getBitmapFromUrl(stringUrl);
-                        }
-                    } catch (Exception e) {
-
-                    } finally {
-                        if (bitmap1 != null) {
-                            final Bitmap finalBitmap = bitmap1;
-                            ((AppCompatActivity)mContext).runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    b.mShopImageView.setImageDrawable(new RoundedImageDrawable(finalBitmap));
-                                    //mImageCache.addBitmapToMemoryCache(stringUrl, finalBitmap);
-                                }
-                            });
-                        }
-                    }
-                }
-            });
-
-            task.start();
+            if(imageBitmap != null) {
+                b.mShopImageView.setImageDrawable(new RoundedImageDrawable(imageBitmap));
+            } else {
+                generateNewImageDataTask(stringUrl);
+            }
         }
     }
 
