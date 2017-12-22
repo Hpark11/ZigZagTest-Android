@@ -2,13 +2,11 @@ package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.LruCache;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TableRow;
 
 import com.zigzagtest.croquiscom.zigzagtest.R;
 import com.zigzagtest.croquiscom.zigzagtest.databinding.ActivityRankingListBinding;
@@ -44,7 +42,7 @@ public class RankingListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_rankinglist, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

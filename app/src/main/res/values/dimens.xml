@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_section_header_height">32dp</dimen>
+    <dimen name="dimen_filter_item_height">32dp</dimen>
+    
+    <dimen name="dimen_filter_item_base_margin">4dp</dimen>
+
+</resources>

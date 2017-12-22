@@ -1,9 +1,410 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    </android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_section_header_height"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/colorWeekBackground"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="6dp"
+                    android:text="@string/string_age_group"
+                    android:textColor="@color/colorWeekText" />
+
+                <TableLayout
+                    android:id="@+id/mAgeFilterTableLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*"
+                    >
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/age_filter_item_selector"
+                            android:onClick="onCheckFilterCondition"
+                            android:textColor="@color/colorFilterAges"
+                            android:textOff="@string/string_age_10s"
+                            android:textOn="@string/string_age_10s"
+                            android:tag="0"/>
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/age_filter_item_selector"
+                            android:onClick="onCheckFilterCondition"
+                            android:textColor="@color/colorFilterAges"
+                            android:textOff="@string/string_age_early_20s"
+                            android:textOn="@string/string_age_early_20s"
+                            android:tag="1"/>
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/age_filter_item_selector"
+                            android:onClick="onCheckFilterCondition"
+                            android:textColor="@color/colorFilterAges"
+                            android:textOff="@string/string_age_mid_20s"
+                            android:textOn="@string/string_age_mid_20s"
+                            android:tag="2"/>
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/age_filter_item_selector"
+                            android:onClick="onCheckFilterCondition"
+                            android:textColor="@color/colorFilterAges"
+                            android:textOff="@string/string_age_late_20s"
+                            android:textOn="@string/string_age_late_20s"
+                            android:tag="3"
+                            />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/age_filter_item_selector"
+                            android:onClick="onCheckFilterCondition"
+                            android:textColor="@color/colorFilterAges"
+                            android:textOff="@string/string_age_early_30s"
+                            android:textOn="@string/string_age_early_30s"
+                            android:tag="4"/>
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/age_filter_item_selector"
+                            android:onClick="onCheckFilterCondition"
+                            android:textColor="@color/colorFilterAges"
+                            android:textOff="@string/string_age_mid_30s"
+                            android:textOn="@string/string_age_mid_30s"
+                            android:tag="5"/>
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/age_filter_item_selector"
+                            android:onClick="onCheckFilterCondition"
+                            android:textColor="@color/colorFilterAges"
+                            android:textOff="@string/string_age_late_30s"
+                            android:textOn="@string/string_age_late_30s"
+                            android:tag="6"/>
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/age_filter_item_selector"
+                            android:onClick="onCheckFilterCondition"
+                            android:textColor="@color/colorFilterAges"
+                            android:textOff="@string/string_age_late_30s"
+                            android:textOn="@string/string_age_late_30s"
+                            android:visibility="invisible"
+                            android:tag="7"/>
+                    </TableRow>
+
+                </TableLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_section_header_height"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/colorWeekBackground"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="6dp"
+                    android:text="@string/string_style"
+                    android:textColor="@color/colorWeekText" />
+
+                <TableLayout
+                    android:id="@+id/mStyleFilterTableLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_famine"
+                            android:textOn="@string/string_style_famine"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_modern_cynical"
+                            android:textOn="@string/string_style_modern_cynical"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                        />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_simple_basic"
+                            android:textOn="@string/string_style_simple_basic"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_lovely"
+                            android:textOn="@string/string_style_lovely"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_unique"
+                            android:textOn="@string/string_style_unique"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_missi"
+                            android:textOn="@string/string_style_missi"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_campus_look"
+                            android:textOn="@string/string_style_campus_look"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_vintage"
+                            android:textOn="@string/string_style_vintage"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_sexy_glam"
+                            android:textOn="@string/string_style_sexy_glam"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_school_look"
+                            android:textOn="@string/string_style_school_look"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_romantic"
+                            android:textOn="@string/string_style_romantic"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_office_look"
+                            android:textOn="@string/string_style_office_look"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_office_look"
+                            android:textOn="@string/string_style_office_look"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:textOff="@string/string_style_luxury"
+                            android:textOn="@string/string_style_luxury"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+
+                        <ToggleButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
+                            android:textColor="@color/colorFilterStyles"
+                            android:background="@drawable/style_filter_item_selector"
+                            android:visibility="invisible"
+                            android:onClick="onCheckFilterCondition"
+                            android:tag="1000"
+                            />
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <Button
+            android:id="@+id/mConfirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorFilterConfirm"
+            android:onClick="onConfirmFilter"
+            android:text="@string/string_confirm"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_weight="0"
+            />
+
+    </LinearLayout>
 </layout>

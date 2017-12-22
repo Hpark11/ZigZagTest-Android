@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorWeekBackground">#eeeeee</color>
     <color name="colorWeekText">#151515</color>
+    <color name="colorFilterConfirm">#0097A7</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorFilterAges">#1976D2</color>
+    <color name="colorFilterStyles">#D81B60</color>
 </resources>

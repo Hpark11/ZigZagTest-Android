@@ -22,7 +22,6 @@
 
         <ImageView
             android:id="@+id/mShopImageView"
-            android:src="@drawable/shop_image_frame"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginBottom="8dp"
