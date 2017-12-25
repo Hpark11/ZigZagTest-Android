@@ -51,6 +51,7 @@ public class FilterActivity extends AppCompatActivity {
                 ToggleButton button = (ToggleButton)row.getChildAt(j);
                 if(button.getVisibility() == View.VISIBLE && mAgeConditions[Integer.parseInt((String)button.getTag())] == 1) {
                     button.setChecked(true);
+                    onCheckFilterCondition(button);
                 }
             }
         }
@@ -61,6 +62,7 @@ public class FilterActivity extends AppCompatActivity {
                 ToggleButton button = (ToggleButton)row.getChildAt(j);
                 if(button.getVisibility() == View.VISIBLE && mStyleConditions.contains(button.getTextOn())) {
                     button.setChecked(true);
+                    onCheckFilterCondition(button);
                 }
             }
         }
@@ -123,8 +125,10 @@ public class FilterActivity extends AppCompatActivity {
         } else {
             if(button.getTag().equals(STYLE_FILTER_TAG)) {
                 button.setTextColor(getResources().getColor(R.color.colorFilterStyles));
+                mStyleConditions.remove(String.valueOf(button.getTextOn()));
             } else {
                 button.setTextColor(getResources().getColor(R.color.colorFilterAges));
+                mAgeConditions[Integer.parseInt((String)button.getTag())] = 0;
             }
         }
     }

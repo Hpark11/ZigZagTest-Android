@@ -1,19 +1,24 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Comparator;
 
 /**
  * Created by croquiscom on 2017. 12. 20..
  */
 
-public class Shop {
+public class Shop implements Comparable<Shop> {
     public String name;
     public String url;
     public String[] style;
     public int[] age = new int[7];
     public int score;
+    private int matches = 0;
 
     public Shop(String name, String url, String style, int[] age, int score) {
         this.name = name;
@@ -37,6 +42,25 @@ public class Shop {
             this.score = jsonObject.getInt("0");
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setNumberOfMatches(int matches) {
+        this.matches = matches;
+    }
+
+    public int getNumberOfMatches() {
+        return matches;
+    }
+
+    @Override
+    public int compareTo(Shop shop) { return 0; }
+
+    static class Comparator<Shop> implements java.util.Comparator<Shop> {
+        @Override
+        public int compare(Shop lhs, Shop rhs) {
+
+            return 0;
         }
     }
 }

@@ -8,11 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.zigzagtest.croquiscom.zigzagtest.R;
-import com.zigzagtest.croquiscom.zigzagtest.RoundedImageDrawable;
+import com.zigzagtest.croquiscom.zigzagtest.extension.RoundedImageDrawable;
 import com.zigzagtest.croquiscom.zigzagtest.databinding.ItemShopBinding;
 import com.zigzagtest.croquiscom.zigzagtest.service.APIService;
 import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
@@ -70,6 +68,11 @@ public class ShopListAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void resetShopList(ArrayList<Shop> shops) {
+        mShopArrayList = shops;
+        notifyDataSetChanged();
+    }
+
     private class ShopViewHolder {
         ItemShopBinding b;
         Thread task;
@@ -118,9 +121,8 @@ public class ShopListAdapter extends BaseAdapter {
             b.mStyleTextView2.setText(shop.style.length > 1 ? shop.style[1] : "");
             b.mAgeTextView.setText(FilterService.getRepresentativeAgesData(shop.age));
 
-            String replacedStr = shop.url.replaceAll("(http://www.|www.|http://)([\\w-]+)([.\\w/]+)", "$2");
+            final String replacedStr = shop.url.replaceAll("(http://www.|www.|http://)([\\w-]+)([.\\w/]+)", "$2");
             final String stringUrl = "https://cf.shop.s.zigzag.kr/images/" + replacedStr + ".jpg";
-
             final Bitmap imageBitmap = mImageCache.getBitmapFromMemCache(stringUrl);
 
             if(imageBitmap != null) {
@@ -130,7 +132,4 @@ public class ShopListAdapter extends BaseAdapter {
             }
         }
     }
-
-
-
 }

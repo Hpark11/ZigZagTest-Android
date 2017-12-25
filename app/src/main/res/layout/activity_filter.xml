@@ -137,12 +137,11 @@
                             android:layout_height="@dimen/dimen_filter_item_height"
                             android:layout_margin="4dp"
                             android:background="@drawable/age_filter_item_selector"
-                            android:onClick="onCheckFilterCondition"
                             android:textColor="@color/colorFilterAges"
-                            android:textOff="@string/string_age_late_30s"
                             android:textOn="@string/string_age_late_30s"
                             android:visibility="invisible"
-                            android:tag="7"/>
+                            android:tag="0"
+                            android:enabled="false"/>
                     </TableRow>
 
                 </TableLayout>
@@ -378,11 +377,10 @@
                             android:layout_height="@dimen/dimen_filter_item_height"
                             android:layout_weight="1"
                             android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
                             android:background="@drawable/style_filter_item_selector"
                             android:visibility="invisible"
-                            android:onClick="onCheckFilterCondition"
                             android:tag="1000"
+                            android:enabled="false"
                             />
                     </TableRow>
                 </TableLayout>

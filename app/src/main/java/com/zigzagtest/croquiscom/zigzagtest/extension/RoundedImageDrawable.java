@@ -1,4 +1,4 @@
-package com.zigzagtest.croquiscom.zigzagtest;
+package com.zigzagtest.croquiscom.zigzagtest.extension;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
