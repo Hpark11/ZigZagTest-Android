@@ -38,7 +38,9 @@ final public class APIService {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if(connection != null) connection.disconnect();
+            if (connection != null) {
+                connection.disconnect();
+            }
         }
         return bitmap;
     }
@@ -52,7 +54,6 @@ final public class APIService {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return result;
     }
 
@@ -62,13 +63,11 @@ final public class APIService {
         try {
             JSONObject jsonObject = new JSONObject(data);
             JSONArray jsonArray = jsonObject.getJSONArray("list");
-
-            for(int i = 0; i < jsonArray.length(); i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject item = jsonArray.getJSONObject(i);
                 Shop shop = new Shop(item);
                 shopArrayList.add(shop);
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

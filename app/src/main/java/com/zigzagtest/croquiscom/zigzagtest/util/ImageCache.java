@@ -11,7 +11,6 @@ final public class ImageCache {
     private LruCache<String, Bitmap> mMemoryCache;
 
     public ImageCache() {
-
         final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         final int cacheSize = maxMemory / 8;
 
@@ -24,7 +23,7 @@ final public class ImageCache {
     }
 
     public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
-        if (getBitmapFromMemCache(key) == null) {
+        if (getBitmapFromMemCache(key) == null) {   // key는 존재할 때 bitmap 이 갱신되었다면?
             mMemoryCache.put(key, bitmap);
         }
     }

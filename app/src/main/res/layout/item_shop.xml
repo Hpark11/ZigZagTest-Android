@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="shop"
+            type="com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop"/>
+    </data>
+
+    <!-- Layout 고민 어떤 viewgroup 이 장점이 있는지 -->
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="64dp">
@@ -11,14 +21,13 @@
             android:layout_width="52dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="2dp"
             android:layout_marginTop="8dp"
-            android:text="0000"
-            android:textSize="20sp"
             android:textAlignment="center"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0000" />
 
         <ImageView
             android:id="@+id/mShopImageView"
@@ -29,7 +38,9 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/mRankNumberTextView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:ima
+            />
 
 
         <TextView
@@ -38,44 +49,44 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="임블리"
-            android:textSize="18dp"
             android:textColor="@color/colorWeekText"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="@+id/mAgeTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/mStyleTextView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:text="러블리"
-            android:background="@drawable/shop_padded_text_frame"
-            app:layout_constraintBottom_toBottomOf="@+id/mStyleTextView1"
-            app:layout_constraintStart_toEndOf="@+id/mStyleTextView1"
-            app:layout_constraintTop_toTopOf="@+id/mStyleTextView1" />
-
-        <TextView
-            android:id="@+id/mStyleTextView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
-            android:text="페미닌"
-            android:background="@drawable/shop_padded_text_frame"
-            app:layout_constraintBottom_toBottomOf="@+id/mAgeTextView"
-            app:layout_constraintStart_toEndOf="@+id/mAgeTextView"
-            app:layout_constraintTop_toTopOf="@+id/mAgeTextView" />
-
+        <!-- -->
         <TextView
             android:id="@+id/mAgeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="3dp"
+            android:background="@drawable/shop_padded_text_frame"
             android:text="10대"
             app:layout_constraintStart_toEndOf="@+id/mShopImageView"
-            app:layout_constraintTop_toBottomOf="@+id/mShopNameTextView"
-            android:background="@drawable/shop_padded_text_frame"/>
+            app:layout_constraintTop_toBottomOf="@+id/mShopNameTextView" />
 
+        <TextView
+            android:id="@+id/mStyleTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:background="@drawable/shop_padded_text_frame"
+            android:text="페미닌"
+            app:layout_constraintBottom_toBottomOf="@+id/mAgeTextView"
+            app:layout_constraintStart_toEndOf="@+id/mAgeTextView"
+            app:layout_constraintTop_toTopOf="@+id/mAgeTextView" />
+
+        <TextView
+            android:id="@+id/mStyleTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/shop_padded_text_frame"
+            android:text="러블리"
+            app:layout_constraintBottom_toBottomOf="@+id/mStyleTextView1"
+            app:layout_constraintStart_toEndOf="@+id/mStyleTextView1"
+            app:layout_constraintTop_toTopOf="@+id/mStyleTextView1" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

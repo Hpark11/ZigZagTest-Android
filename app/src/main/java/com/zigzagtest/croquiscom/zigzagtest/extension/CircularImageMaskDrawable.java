@@ -10,20 +10,20 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 
 /**
  * Created by croquiscom on 2017. 12. 20..
  */
 
-final public class RoundedImageDrawable extends Drawable {
-    private final Bitmap mBitmap;
+// 네이밍 정확하게
+final public class CircularImageMaskDrawable extends Drawable {
     private final Paint mPaint;
     private final RectF mRectF;
     private final int mBitmapWidth;
     private final int mBitmapHeight;
 
-    public RoundedImageDrawable(Bitmap bitmap) {
-        mBitmap = bitmap;
+    public CircularImageMaskDrawable(Bitmap bitmap) {
         mRectF = new RectF();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -31,12 +31,12 @@ final public class RoundedImageDrawable extends Drawable {
         final BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         mPaint.setShader(shader);
 
-        mBitmapWidth = mBitmap.getWidth();
-        mBitmapHeight = mBitmap.getHeight();
+        mBitmapWidth = bitmap.getWidth();
+        mBitmapHeight = bitmap.getHeight();
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         canvas.drawOval(mRectF, mPaint);
     }
 

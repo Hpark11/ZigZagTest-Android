@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
+        android:layout_height="match_parent">
+        
+        <!--week 표시 헤더 부분을 리스트와 같이 스크롤 되게 수정-->
         <TextView
             android:id="@+id/mWeekTextView"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:gravity="center_vertical"
-            android:textColor="@color/colorWeekText"
             android:background="@color/colorWeekBackground"
-            android:paddingLeft="8dp"/>
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:textColor="@color/colorWeekText"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
 
         <ListView
             android:id="@+id/mRankingListView"
@@ -22,7 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mWeekTextView"></ListView>
+            app:layout_constraintTop_toBottomOf="@+id/mWeekTextView" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

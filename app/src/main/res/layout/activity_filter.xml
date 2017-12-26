@@ -8,9 +8,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!-- study -->
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
             >
 
@@ -19,6 +20,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!-- using TableLayout with span -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_section_header_height"
@@ -36,21 +38,23 @@
                     android:stretchColumns="*"
                     >
 
+                    <!-- wrap_content + match_parent ????? -->
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="@dimen/dimen_filter_item_height"
                         >
 
+                        <!-- 공통된 것들은 style 로 분리 -->
+                        <!-- control (button, checkbox, ... ) 참조 -->
                         <ToggleButton
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
-                            android:layout_height="@dimen/dimen_filter_item_height"
+                            android:layout_height="match_parent"
                             android:layout_margin="4dp"
                             android:background="@drawable/age_filter_item_selector"
                             android:onClick="onCheckFilterCondition"
                             android:textColor="@color/colorFilterAges"
-                            android:textOff="@string/string_age_10s"
-                            android:textOn="@string/string_age_10s"
+                            android:text="@string/string_age_10s"
                             android:tag="0"/>
 
                         <ToggleButton
@@ -343,10 +347,15 @@
 
                     </TableRow>
 
+                    <!-- using column count (not weight) -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+                        <!-- 높이를 고정할거면 drawable에서
+                             1. 패딩을 주던것을 UI에 가져와서 처리하거나
+                             2. alignment를 centerVertical로 처리를 하던지
+                        -->
                         <ToggleButton
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/dimen_filter_item_height"
@@ -365,7 +374,7 @@
                             android:layout_height="@dimen/dimen_filter_item_height"
                             android:layout_weight="1"
                             android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
+                            android:textColor="@drawable/text_color_test"
                             android:background="@drawable/style_filter_item_selector"
                             android:textOff="@string/string_style_luxury"
                             android:textOn="@string/string_style_luxury"
@@ -390,6 +399,7 @@
         </ScrollView>
 
 
+        <!-- using dp -->
         <Button
             android:id="@+id/mConfirmButton"
             android:layout_width="match_parent"
@@ -402,7 +412,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_weight="0"
             />
 
     </LinearLayout>

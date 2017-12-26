@@ -52,4 +52,5 @@ public final class Shop{
     public int getNumberOfMatches() {
         return matches;
     }
+
 }

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TableRow;
 
 import com.zigzagtest.croquiscom.zigzagtest.R;
 import com.zigzagtest.croquiscom.zigzagtest.databinding.ActivityRankingListBinding;
@@ -18,18 +17,17 @@ import com.zigzagtest.croquiscom.zigzagtest.util.ImageCache;
 import java.util.ArrayList;
 
 public class RankingListActivity extends AppCompatActivity {
-    private static final String TAG = RankingListActivity.class.getSimpleName();
     private static final int REQUEST_CODE_FILTERING_DONE = 1000;
-    private ArrayList<Shop> mShopArrayList;
 
-    private ActivityRankingListBinding b;
+    private ArrayList<Shop> mShopItems; // ling align
+    private ActivityRankingListBinding mBinding;   // naming
     private ImageCache mImageCache;
     private FilterService mFilterService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        b = DataBindingUtil.setContentView(this, R.layout.activity_ranking_list);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_ranking_list);
         mImageCache = new ImageCache();
         mFilterService = new FilterService(this);
         initViews();
@@ -37,13 +35,13 @@ public class RankingListActivity extends AppCompatActivity {
 
     private void initViews() {
         final String week = APIService.getWeek(this);
-        mShopArrayList = APIService.getShopList(this);
+        mShopItems = APIService.getShopList(this);
 
-        ArrayList<Shop> shops = mFilterService.setStyleMatchesToEachItem(mShopArrayList);
+        ArrayList<Shop> shops = mFilterService.setStyleMatchesToEachItem(mShopItems);
         shops = mFilterService.getFilteredShops(shops);
 
-        b.mRankingListView.setAdapter(new ShopListAdapter(this, shops, mImageCache));
-        b.mWeekTextView.setText(week);
+        mBinding.mRankingListView.setAdapter(new ShopListAdapter(this, shops, mImageCache));
+        mBinding.mWeekTextView.setText(week);
     }
 
     @Override
@@ -64,9 +62,9 @@ public class RankingListActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_CODE_FILTERING_DONE && resultCode == RESULT_OK) {
-            ShopListAdapter adapter = (ShopListAdapter)b.mRankingListView.getAdapter();
+            ShopListAdapter adapter = (ShopListAdapter) mBinding.mRankingListView.getAdapter();
 
-            ArrayList<Shop> shops = mFilterService.setStyleMatchesToEachItem(mShopArrayList);
+            ArrayList<Shop> shops = mFilterService.setStyleMatchesToEachItem(mShopItems);
             shops = mFilterService.getFilteredShops(shops);
             adapter.resetShopList(shops);
         }

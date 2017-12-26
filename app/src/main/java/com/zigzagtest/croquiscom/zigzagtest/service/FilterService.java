@@ -15,15 +15,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-/**
- * Created by croquiscom on 2017. 12. 20..
- */
-
 final public class FilterService {
     private static final String TAG = FilterService.class.getSimpleName();
-
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
 
     public static final String[] AGES = {
             "10대",
@@ -54,6 +47,18 @@ final public class FilterService {
         STYLES.put("헐리웃스타일", new Pair<>(R.color.colorBluePicton, R.color.colorVioletGem));
     }
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
+//    private static FilterService _instance;
+//
+//    public static FilterService getInstance(Context context) {
+//        if (_instance == null) {
+//            _instance = new FilterService(context);
+//        }
+//        return _instance;
+//    }
+
     public FilterService(Context context) {
         sharedPreferences = context.getSharedPreferences("filter", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -63,6 +68,7 @@ final public class FilterService {
     public int[] getFilterByAges() {
         int[] result = new int[FilterService.AGES.length];
         int ageVal = sharedPreferences.getInt("ages", 0);
+
         for(int i = AGES.length - 1; i >= 0; i--) {
             result[i] = ageVal & 1;
             ageVal >>= 1;
@@ -89,22 +95,18 @@ final public class FilterService {
     public ArrayList<Shop> setStyleMatchesToEachItem(ArrayList<Shop> shops) {
         Set<String> conditionByStyles = getFilterByStyles();
         for (int i = 0; i < shops.size(); i++) {
-
-            int num = 0;
+            int matchCount = 0;
             Shop shop = shops.get(i);
-
             for (String s: shop.style) {
                 if(conditionByStyles.contains(s)) {
-                    num++;
+                    matchCount++;
                 }
             }
-
-            shop.setNumberOfMatches(num);
+            shop.setNumberOfMatches(matchCount);
             shops.set(i, shop);
         }
         return shops;
     }
-
 
     private ArrayList<Shop> filteredByAges(ArrayList<Shop> shops, final int[] conditions) {
         ArrayList<Shop> result = new ArrayList<>();
@@ -132,6 +134,7 @@ final public class FilterService {
         return result;
     }
 
+    // naming
     private boolean containsAgeCondition(final int[] with) {
         for (int element: with) { if(element == 1) return true; }
         return false;
@@ -167,7 +170,9 @@ final public class FilterService {
     }
 
     public static String getRepresentativeAgesData(final int[] ages) {
-        if (ages.length != AGES.length) return null;
+        if (ages.length != AGES.length) {
+            return null;
+        }
 
         String result = "";
         String holder = "";

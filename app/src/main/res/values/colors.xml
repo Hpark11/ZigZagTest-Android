@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- xml naming -->
+
     <color name="colorPrimary">#EC407A</color>
     <color name="colorPrimaryDark">#E91E63</color>
     <color name="colorAccent">#FF4081</color>
