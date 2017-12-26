@@ -31,13 +31,13 @@ import java.util.ArrayList;
 public final class ShopListAdapter extends BaseAdapter {
     private ArrayList<Shop> mShopArrayList;
     private Context mContext;
-    private LayoutInflater mInflator;
+    private LayoutInflater mInflater;
     private ImageCache mImageCache;
 
     public ShopListAdapter(Context context, ArrayList<Shop> shops, ImageCache imageCache) {
         mContext = context;
         mShopArrayList = shops;
-        mInflator = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mImageCache = imageCache;
     }
 
@@ -61,7 +61,7 @@ public final class ShopListAdapter extends BaseAdapter {
         ShopViewHolder shopViewHolder;
 
         if (convertView == null) {
-            convertView = mInflator.inflate(R.layout.item_shop, viewGroup, false);
+            convertView = mInflater.inflate(R.layout.item_shop, viewGroup, false);
             shopViewHolder = new ShopViewHolder(convertView);
             convertView.setTag(shopViewHolder);
         } else {
@@ -140,22 +140,14 @@ public final class ShopListAdapter extends BaseAdapter {
 
         private void setTextViewInterior(TextView textView, final String text) {
             textView.setText(text);
-            if(textView.getText().equals("")) {
-                textView.setVisibility(View.INVISIBLE);
-            }
+            if(textView.getText().equals("")) textView.setVisibility(View.INVISIBLE);
 
             Pair<Integer, Integer> p = FilterService.STYLES.get(text);
             GradientDrawable drawable = (GradientDrawable) textView.getBackground();
 
-            if (p == null) {
-                drawable.setStroke(1, Color.DKGRAY);
-                drawable.setColor(Color.TRANSPARENT);
-                textView.setTextColor(Color.DKGRAY);
-            } else {
-                drawable.setStroke(1, mContext.getResources().getColor(p.second));
-                drawable.setColor(mContext.getResources().getColor(p.first));
-                textView.setTextColor(mContext.getResources().getColor(p.second));
-            }
+            drawable.setStroke(1, p == null ? Color.DKGRAY : mContext.getResources().getColor(p.second));
+            drawable.setColor(p == null ? Color.TRANSPARENT : mContext.getResources().getColor(p.first));
+            textView.setTextColor(p == null ? Color.DKGRAY : mContext.getResources().getColor(p.second));
         }
     }
 }

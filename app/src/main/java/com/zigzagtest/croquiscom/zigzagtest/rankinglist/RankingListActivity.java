@@ -39,7 +39,7 @@ public class RankingListActivity extends AppCompatActivity {
         final String week = APIService.getWeek(this);
         mShopArrayList = APIService.getShopList(this);
 
-        ArrayList<Shop> shops = mFilterService.setStyleMatchesToEachItems(mShopArrayList);
+        ArrayList<Shop> shops = mFilterService.setStyleMatchesToEachItem(mShopArrayList);
         shops = mFilterService.getFilteredShops(shops);
 
         b.mRankingListView.setAdapter(new ShopListAdapter(this, shops, mImageCache));
@@ -66,7 +66,7 @@ public class RankingListActivity extends AppCompatActivity {
         if(requestCode == REQUEST_CODE_FILTERING_DONE && resultCode == RESULT_OK) {
             ShopListAdapter adapter = (ShopListAdapter)b.mRankingListView.getAdapter();
 
-            ArrayList<Shop> shops = mFilterService.setStyleMatchesToEachItems(mShopArrayList);
+            ArrayList<Shop> shops = mFilterService.setStyleMatchesToEachItem(mShopArrayList);
             shops = mFilterService.getFilteredShops(shops);
             adapter.resetShopList(shops);
         }

@@ -15,7 +15,7 @@ import android.graphics.drawable.Drawable;
  * Created by croquiscom on 2017. 12. 20..
  */
 
-public class RoundedImageDrawable extends Drawable {
+final public class RoundedImageDrawable extends Drawable {
     private final Bitmap mBitmap;
     private final Paint mPaint;
     private final RectF mRectF;

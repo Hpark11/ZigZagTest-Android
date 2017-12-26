@@ -25,7 +25,6 @@ import java.util.TreeSet;
 public class FilterActivity extends AppCompatActivity {
     private static final String TAG = FilterActivity.class.getSimpleName();
     private ActivityFilterBinding b;
-
     private final String STYLE_FILTER_TAG = "1000";
 
     private FilterService mFilterService;

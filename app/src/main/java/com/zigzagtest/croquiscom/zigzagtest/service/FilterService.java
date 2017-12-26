@@ -86,7 +86,7 @@ final public class FilterService {
         editor.commit();
     }
 
-    public ArrayList<Shop> setStyleMatchesToEachItems(ArrayList<Shop> shops) {
+    public ArrayList<Shop> setStyleMatchesToEachItem(ArrayList<Shop> shops) {
         Set<String> conditionByStyles = getFilterByStyles();
         for (int i = 0; i < shops.size(); i++) {
 
