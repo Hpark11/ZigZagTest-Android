@@ -12,7 +12,7 @@ import java.util.Comparator;
  * Created by croquiscom on 2017. 12. 20..
  */
 
-public class Shop implements Comparable<Shop> {
+public class Shop{
     public String name;
     public String url;
     public String[] style;
@@ -51,16 +51,5 @@ public class Shop implements Comparable<Shop> {
 
     public int getNumberOfMatches() {
         return matches;
-    }
-
-    @Override
-    public int compareTo(Shop shop) { return 0; }
-
-    static class Comparator<Shop> implements java.util.Comparator<Shop> {
-        @Override
-        public int compare(Shop lhs, Shop rhs) {
-
-            return 0;
-        }
     }
 }
