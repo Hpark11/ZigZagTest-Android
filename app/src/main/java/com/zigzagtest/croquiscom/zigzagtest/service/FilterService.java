@@ -2,12 +2,16 @@ package com.zigzagtest.croquiscom.zigzagtest.service;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Pair;
 
+import com.zigzagtest.croquiscom.zigzagtest.R;
 import com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -30,6 +34,25 @@ final public class FilterService {
             "30대 중반",
             "30대 후반"
     };
+
+    public static final Map<String, Pair<Integer, Integer>> STYLES;
+    static {
+        STYLES = new HashMap<>();
+        STYLES.put("페미닌", new Pair<>(R.color.colorGreenFern, R.color.colorDarkGray));
+        STYLES.put("모던시크", new Pair<>(R.color.colorGreenMountain, R.color.colorDarkGray));
+        STYLES.put("심플베이직", new Pair<>(R.color.colorBluePicton, R.color.colorBlueWhale));
+        STYLES.put("러블리", new Pair<>(R.color.colorBlueMariner, R.color.colorWeekText));
+        STYLES.put("유니크", new Pair<>(R.color.colorVioletWisteria, R.color.colorVioletGem));
+        STYLES.put("미시스타일", new Pair<>(R.color.colorBlueMariner, R.color.colorBlueWhale));
+        STYLES.put("캠퍼스룩", new Pair<>(R.color.colorYellowEnergy, R.color.colorRedWell));
+        STYLES.put("빈티지", new Pair<>(R.color.colorOrangeNeon, R.color.colorOrangeSun));
+        STYLES.put("섹시글램", new Pair<>(R.color.colorRedTerra, R.color.colorRedWell));
+        STYLES.put("스쿨룩", new Pair<>(R.color.colorYellowTurbo, R.color.colorRedValencia));
+        STYLES.put("로맨틱", new Pair<>(R.color.colorGrayAlmond, R.color.colorDarkGray));
+        STYLES.put("오피스룩", new Pair<>(R.color.colorGraySmoke, R.color.colorLightGray));
+        STYLES.put("럭셔리", new Pair<>(R.color.colorGreenFern, R.color.colorBlueDenim));
+        STYLES.put("헐리웃스타일", new Pair<>(R.color.colorBluePicton, R.color.colorVioletGem));
+    }
 
     public FilterService(Context context) {
         sharedPreferences = context.getSharedPreferences("filter", Context.MODE_PRIVATE);
@@ -96,7 +119,7 @@ final public class FilterService {
         return result;
     }
 
-    private ArrayList<Shop> filterdByStyles(ArrayList<Shop> shops, final Set<String> conditions) {
+    private ArrayList<Shop> filteredByStyles(ArrayList<Shop> shops, final Set<String> conditions) {
         ArrayList<Shop> result = new ArrayList<>();
         for (Shop shop: shops) {
             for (String style: shop.style) {
@@ -110,9 +133,7 @@ final public class FilterService {
     }
 
     private boolean containsAgeCondition(final int[] with) {
-        for (int element: with) {
-            if(element == 1) return true;
-        }
+        for (int element: with) { if(element == 1) return true; }
         return false;
     }
 
@@ -124,11 +145,11 @@ final public class FilterService {
         if(!containsAgeCondition(conditionByAges) && conditionByStyles.size() == 0) {
             return shops;
         } else if (!containsAgeCondition(conditionByAges)) {
-            result = filterdByStyles(shops, conditionByStyles);
+            result = filteredByStyles(shops, conditionByStyles);
         } else if (conditionByStyles.size() == 0) {
             result = filteredByAges(shops, conditionByAges);
         } else {
-            result = filterdByStyles(filteredByAges(shops, conditionByAges), conditionByStyles);
+            result = filteredByStyles(filteredByAges(shops, conditionByAges), conditionByStyles);
         }
 
         Collections.sort(result, new Comparator<Shop>() {

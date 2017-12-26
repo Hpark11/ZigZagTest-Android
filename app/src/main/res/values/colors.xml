@@ -7,7 +7,41 @@
     <color name="colorWeekText">#151515</color>
     <color name="colorFilterConfirm">#0097A7</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorDarkGray">#666666</color>
+    <color name="colorLightGray">#BBBBBB</color>
 
     <color name="colorFilterAges">#1976D2</color>
     <color name="colorFilterStyles">#D81B60</color>
+
+    <color name="colorGreenFern">#6ABB72</color>
+    <color name="colorGreenMountain">#3ABB9D</color>
+    <color name="colorGreenChateau">#4DA664</color>
+    <color name="colorGreenPersian">#2CA786</color>
+
+    <color name="colorBluePicton">#5CADCF</color>
+    <color name="colorBlueMariner">#3585C5</color>
+    <color name="colorBlueCurious">#4590B6</color>
+    <color name="colorBlueDenim">#2F6CAD</color>
+    <color name="colorBlueChambray">#485675</color>
+    <color name="colorBlueWhale">#29334D</color>
+
+    <color name="colorVioletWisteria">#9069B5</color>
+    <color name="colorVioletGem">#533D7F</color>
+
+    <color name="colorYellowEnergy">#F2D46F</color>
+    <color name="colorYellowTurbo">#F7C23E</color>
+
+    <color name="colorOrangeNeon">#F79E3D</color>
+    <color name="colorOrangeSun">#EE7841</color>
+
+    <color name="colorRedTerra">#E66B5B</color>
+    <color name="colorRedValencia">#CC4846</color>
+    <color name="colorRedCinnabar">#DC5047</color>
+    <color name="colorRedWell">#B33234</color>
+
+    <color name="colorGrayAlmond">#A28F85</color>
+    <color name="colorGraySmoke">#EFEFEF</color>
+    <color name="colorGrayIron">#D1D5D8</color>
+    <color name="colorGrayIronGray">#75706B</color>
+
 </resources>

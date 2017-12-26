@@ -61,7 +61,7 @@ public class RoundedImageDrawable extends Drawable {
 
     @Override
     public int getOpacity() {
-        return PixelFormat.TRANSLUCENT;
+        return PixelFormat.TRANSPARENT;
     }
 
     @Override
@@ -85,9 +85,4 @@ public class RoundedImageDrawable extends Drawable {
         mPaint.setDither(dither);
         invalidateSelf();
     }
-
-    public Bitmap getBitmap() {
-        return mBitmap;
-    }
-
 }

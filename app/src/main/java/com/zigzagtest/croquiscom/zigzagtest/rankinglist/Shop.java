@@ -12,7 +12,7 @@ import java.util.Comparator;
  * Created by croquiscom on 2017. 12. 20..
  */
 
-public class Shop{
+public final class Shop{
     public String name;
     public String url;
     public String[] style;

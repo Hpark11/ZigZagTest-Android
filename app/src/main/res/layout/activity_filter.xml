@@ -140,8 +140,9 @@
                             android:textColor="@color/colorFilterAges"
                             android:textOn="@string/string_age_late_30s"
                             android:visibility="invisible"
+                            android:enabled="false"
                             android:tag="0"
-                            android:enabled="false"/>
+                            />
                     </TableRow>
 
                 </TableLayout>
@@ -379,8 +380,8 @@
                             android:layout_margin="@dimen/dimen_filter_item_base_margin"
                             android:background="@drawable/style_filter_item_selector"
                             android:visibility="invisible"
-                            android:tag="1000"
                             android:enabled="false"
+                            android:tag="1000"
                             />
                     </TableRow>
                 </TableLayout>

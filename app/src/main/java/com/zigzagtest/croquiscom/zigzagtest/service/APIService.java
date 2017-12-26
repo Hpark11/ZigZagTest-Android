@@ -21,6 +21,7 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by croquiscom on 2017. 12. 20..
  */
 final public class APIService {
+    private static final String TAG = APIService.class.getSimpleName();
     private static final String path = "shopList.json";
 
     public static Bitmap getBitmapFromUrl(String stringUrl) {

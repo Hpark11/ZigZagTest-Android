@@ -3,11 +3,15 @@ package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.zigzagtest.croquiscom.zigzagtest.R;
 import com.zigzagtest.croquiscom.zigzagtest.extension.RoundedImageDrawable;
@@ -16,13 +20,15 @@ import com.zigzagtest.croquiscom.zigzagtest.service.APIService;
 import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
 import com.zigzagtest.croquiscom.zigzagtest.util.ImageCache;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
  * Created by croquiscom on 2017. 12. 20..
  */
 
-public class ShopListAdapter extends BaseAdapter {
+public final class ShopListAdapter extends BaseAdapter {
     private ArrayList<Shop> mShopArrayList;
     private Context mContext;
     private LayoutInflater mInflator;
@@ -117,9 +123,9 @@ public class ShopListAdapter extends BaseAdapter {
         public void setDataIntoUIControls(final Shop shop, int rank) {
             b.mRankNumberTextView.setText(String.valueOf(rank));
             b.mShopNameTextView.setText(shop.name);
-            b.mStyleTextView1.setText(shop.style.length > 0 ? shop.style[0] : "");
-            b.mStyleTextView2.setText(shop.style.length > 1 ? shop.style[1] : "");
-            b.mAgeTextView.setText(FilterService.getRepresentativeAgesData(shop.age));
+            setTextViewInterior(b.mStyleTextView1, shop.style.length > 0 ? shop.style[0] : "");
+            setTextViewInterior(b.mStyleTextView2, shop.style.length > 1 ? shop.style[1] : "");
+            setTextViewInterior(b.mAgeTextView, FilterService.getRepresentativeAgesData(shop.age));
 
             final String replacedStr = shop.url.replaceAll("(http://www.|www.|http://)([\\w-]+)([.\\w/]+)", "$2");
             final String stringUrl = "https://cf.shop.s.zigzag.kr/images/" + replacedStr + ".jpg";
@@ -129,6 +135,26 @@ public class ShopListAdapter extends BaseAdapter {
                 b.mShopImageView.setImageDrawable(new RoundedImageDrawable(imageBitmap));
             } else {
                 generateNewImageDataTask(stringUrl);
+            }
+        }
+
+        private void setTextViewInterior(TextView textView, final String text) {
+            textView.setText(text);
+            if(textView.getText().equals("")) {
+                textView.setVisibility(View.INVISIBLE);
+            }
+
+            Pair<Integer, Integer> p = FilterService.STYLES.get(text);
+            GradientDrawable drawable = (GradientDrawable) textView.getBackground();
+
+            if (p == null) {
+                drawable.setStroke(1, Color.DKGRAY);
+                drawable.setColor(Color.TRANSPARENT);
+                textView.setTextColor(Color.DKGRAY);
+            } else {
+                drawable.setStroke(1, mContext.getResources().getColor(p.second));
+                drawable.setColor(mContext.getResources().getColor(p.first));
+                textView.setTextColor(mContext.getResources().getColor(p.second));
             }
         }
     }
