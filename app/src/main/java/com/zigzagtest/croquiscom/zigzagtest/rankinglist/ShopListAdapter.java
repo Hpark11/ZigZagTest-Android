@@ -67,7 +67,7 @@ public final class ShopListAdapter extends BaseAdapter {
         } else {
             shopViewHolder = (ShopViewHolder) convertView.getTag();
             shopViewHolder.b.mShopImageView.setImageBitmap(null);
-            shopViewHolder.verifyTaskStateAndInturrupt();
+            shopViewHolder.verifyTaskStateAndInterrupt();
         }
 
         shopViewHolder.setDataIntoUIControls(mShopArrayList.get(position), position + 1);
@@ -80,14 +80,14 @@ public final class ShopListAdapter extends BaseAdapter {
     }
 
     private class ShopViewHolder {
-        ItemShopBinding b;
-        Thread task;
+        private ItemShopBinding b;
+        private Thread task;
 
         public ShopViewHolder(View itemView) {
             b = DataBindingUtil.bind(itemView);
         }
 
-        public void verifyTaskStateAndInturrupt() {
+        public void verifyTaskStateAndInterrupt() {
             if (task != null && task.isAlive()) {
                 task.interrupt();
                 task = null;
