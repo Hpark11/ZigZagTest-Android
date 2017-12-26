@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="shop"
             type="com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop"/>
@@ -39,9 +38,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/mRankNumberTextView"
             app:layout_constraintTop_toTopOf="parent"
-            app:ima
+            srcUrl="@{shop.url}"
             />
-
 
         <TextView
             android:id="@+id/mShopNameTextView"
@@ -62,7 +60,8 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="3dp"
             android:background="@drawable/shop_padded_text_frame"
-            android:text="10대"
+            android:text="@{shop.representativeAgesData}"
+            tools:text="10대"
             app:layout_constraintStart_toEndOf="@+id/mShopImageView"
             app:layout_constraintTop_toBottomOf="@+id/mShopNameTextView" />
 
@@ -72,7 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:background="@drawable/shop_padded_text_frame"
-            android:text="페미닌"
+            android:text="@{shop.firstStyle}"
+            tools:text="@string/string_style_luxury"
             app:layout_constraintBottom_toBottomOf="@+id/mAgeTextView"
             app:layout_constraintStart_toEndOf="@+id/mAgeTextView"
             app:layout_constraintTop_toTopOf="@+id/mAgeTextView" />
@@ -83,7 +83,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:background="@drawable/shop_padded_text_frame"
-            android:text="러블리"
+            android:text="@{shop.secondStyle}"
+            tools:text="@string/string_style_office_look"
             app:layout_constraintBottom_toBottomOf="@+id/mStyleTextView1"
             app:layout_constraintStart_toEndOf="@+id/mStyleTextView1"
             app:layout_constraintTop_toTopOf="@+id/mStyleTextView1" />

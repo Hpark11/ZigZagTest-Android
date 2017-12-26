@@ -33,12 +33,12 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        holder.bind(mShopItems.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mShopItems.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -50,7 +50,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
         }
 
         public void bind(Shop shop) {
-//            mBinding.setShop();
+            mBinding.setShop(shop);
             mBinding.executePendingBindings();
         }
     }

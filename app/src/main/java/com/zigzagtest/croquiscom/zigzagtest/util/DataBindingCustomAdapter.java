@@ -10,10 +10,16 @@ import android.widget.ImageView;
 
 public class DataBindingCustomAdapter {
 
-    @BindingAdapter("url")
-    public static void downloadImage(ImageView imageView, final String url) {
-        final String replacedStr = url.replaceAll("(http://www.|www.|http://)([\\w-]+)([.\\w/]+)", "$2");
+    @BindingAdapter("srcUrl")
+    public static void downloadImage(ImageView imageView, final String srcUrl) {
+        final String replacedStr = srcUrl.replaceAll("(http://www.|www.|http://)([\\w-]+)([.\\w/]+)", "$2");
         final String stringUrl = "https://cf.shop.s.zigzag.kr/images/" + replacedStr + ".jpg";
-                
     }
+
+    //@BindingAdapter("")
+    //public static void d
+
+
+
+
 }

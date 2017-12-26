@@ -2,6 +2,8 @@ package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
 import android.support.annotation.NonNull;
 
+import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +53,39 @@ public final class Shop{
 
     public int getNumberOfMatches() {
         return matches;
+    }
+
+    public String getRepresentativeAgesData() {
+        if (age.length != FilterService.AGES.length) {
+            return null;
+        }
+
+        String result = "";
+        String holder = "";
+
+        for(int i = 0; i < age.length; i++) {
+            String ageGroup = FilterService.AGES[i].split(" ")[0];
+
+            if(age[i] == 1) {
+                if (!holder.equals(ageGroup)) {
+                    if (result.length() != 0) {
+                        result += " ";
+                    }
+                    result += ageGroup;
+                    holder = ageGroup;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public String getFirstStyle() {
+        return style.length > 0 ? style[0] : "";
+    }
+
+    public String getSecondStyle() {
+        return style.length > 1 ? style[1] : "";
     }
 
 }
