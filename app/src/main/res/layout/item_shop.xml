@@ -5,89 +5,128 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="shop"
-            type="com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop"/>
+            type="com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop" />
+
+        <variable
+            name="isSection"
+            type="Boolean" />
+
+        <variable
+            name="rank"
+            type="String" />
+
+        <variable
+            name="week"
+            type="String" />
     </data>
 
-    <!-- Layout 고민 어떤 viewgroup 이 장점이 있는지 -->
-    <android.support.constraint.ConstraintLayout
+    <FrameLayout
+        isSection="@{isSection}"
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/mRankNumberTextView"
-            android:layout_width="52dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="0000" />
+            android:background="@color/colorWeekBackground"
+            android:tag="@string/string_tag_section_header">
 
-        <ImageView
-            android:id="@+id/mShopImageView"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/mRankNumberTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            srcUrl="@{shop.url}"
-            />
+            <TextView
+                android:id="@+id/weekTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center_vertical"
+                android:text="@{week}"
+                android:textColor="@color/colorWeekText"
+                android:textSize="@dimen/dimen_text_h3"
+                tools:text="12월 2주차" />
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/mShopNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="임블리"
-            android:textColor="@color/colorWeekText"
-            android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="@+id/mAgeTextView"
-            app:layout_constraintTop_toTopOf="parent" />
+        <!-- Layout 고민 어떤 viewgroup 이 장점이 있는지 -->
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:tag="@string/string_tag_shop_item">
 
-        <!-- -->
-        <TextView
-            android:id="@+id/mAgeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="3dp"
-            android:background="@drawable/shop_padded_text_frame"
-            android:text="@{shop.representativeAgesData}"
-            tools:text="10대"
-            app:layout_constraintStart_toEndOf="@+id/mShopImageView"
-            app:layout_constraintTop_toBottomOf="@+id/mShopNameTextView" />
+            <TextView
+                android:id="@+id/mRankNumberTextView"
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@{rank}"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0000" />
 
-        <TextView
-            android:id="@+id/mStyleTextView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
-            android:background="@drawable/shop_padded_text_frame"
-            android:text="@{shop.firstStyle}"
-            tools:text="@string/string_style_luxury"
-            app:layout_constraintBottom_toBottomOf="@+id/mAgeTextView"
-            app:layout_constraintStart_toEndOf="@+id/mAgeTextView"
-            app:layout_constraintTop_toTopOf="@+id/mAgeTextView" />
+            <ImageView
+                android:id="@+id/mShopImageView"
+                shopUrl="@{shop.url}"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mRankNumberTextView"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/mStyleTextView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:background="@drawable/shop_padded_text_frame"
-            android:text="@{shop.secondStyle}"
-            tools:text="@string/string_style_office_look"
-            app:layout_constraintBottom_toBottomOf="@+id/mStyleTextView1"
-            app:layout_constraintStart_toEndOf="@+id/mStyleTextView1"
-            app:layout_constraintTop_toTopOf="@+id/mStyleTextView1" />
+            <TextView
+                android:id="@+id/mShopNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{shop.name}"
+                android:textColor="@color/colorWeekText"
+                android:textSize="@dimen/dimen_text_h3"
+                app:layout_constraintStart_toStartOf="@+id/mAgeTextView"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="임블리" />
 
-    </android.support.constraint.ConstraintLayout>
+            <!-- -->
+            <TextView
+                android:id="@+id/mAgeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/shop_padded_text_frame"
+                android:text="@{shop.representativeAgesData}"
+                app:layout_constraintStart_toEndOf="@+id/mShopImageView"
+                app:layout_constraintTop_toBottomOf="@+id/mShopNameTextView"
+                tools:text="10대" />
+
+            <TextView
+                android:id="@+id/mStyleTextView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:background="@drawable/shop_padded_text_frame"
+                android:text="@{shop.firstStyle}"
+                app:layout_constraintBottom_toBottomOf="@+id/mAgeTextView"
+                app:layout_constraintStart_toEndOf="@+id/mAgeTextView"
+                app:layout_constraintTop_toTopOf="@+id/mAgeTextView"
+                tools:text="@string/string_style_luxury" />
+
+            <TextView
+                android:id="@+id/mStyleTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/shop_padded_text_frame"
+                android:text="@{shop.secondStyle}"
+                app:layout_constraintBottom_toBottomOf="@+id/mStyleTextView1"
+                app:layout_constraintStart_toEndOf="@+id/mStyleTextView1"
+                app:layout_constraintTop_toTopOf="@+id/mStyleTextView1"
+                tools:text="@string/string_style_office_look" />
+
+        </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
 </layout>

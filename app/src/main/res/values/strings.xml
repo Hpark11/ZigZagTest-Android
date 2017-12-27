@@ -33,5 +33,7 @@
     <string name="string_style_luxury">럭셔리</string>
     <string name="string_style_hollywood">헐리웃</string>
 
+    <string name="string_tag_section_header">header</string>
+    <string name="string_tag_shop_item">shop</string>
 
 </resources>

@@ -28,7 +28,7 @@ public final class ShopListAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private ImageCache mImageCache;
 
-    public ShopListAdapter(Context context, ArrayList<Shop> shops, ImageCache imageCache) {
+    ShopListAdapter(Context context, ArrayList<Shop> shops, ImageCache imageCache) {
         mContext = context;
         mShopArrayList = shops;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

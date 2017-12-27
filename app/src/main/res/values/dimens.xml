@@ -5,4 +5,5 @@
     
     <dimen name="dimen_filter_item_base_margin">4dp</dimen>
 
+    <dimen name="dimen_text_h3">18dp</dimen>
 </resources>

@@ -145,6 +145,12 @@ final public class FilterService {
         final Set<String> conditionByStyles = getFilterByStyles();
         ArrayList<Shop> result;
 
+//        if(conditionByStyles.size() == 0) {
+//
+//        } else {
+//            result = setStyleMatchesToEachItem(shops);
+//        }
+
         if(!containsAgeCondition(conditionByAges) && conditionByStyles.size() == 0) {
             return shops;
         } else if (!containsAgeCondition(conditionByAges)) {
