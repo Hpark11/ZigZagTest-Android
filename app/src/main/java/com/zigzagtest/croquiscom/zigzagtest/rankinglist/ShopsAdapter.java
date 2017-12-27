@@ -3,6 +3,7 @@ package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
 import com.zigzagtest.croquiscom.zigzagtest.databinding.ItemShopBinding;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if(position == 0) {
+        if (position == 0) {
             holder.bindSectionHeader(mWeek);
         } else {
             holder.bindItem(mShopItems.get(position - 1), position);

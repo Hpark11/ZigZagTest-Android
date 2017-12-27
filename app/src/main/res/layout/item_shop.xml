@@ -31,18 +31,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorWeekBackground"
             android:tag="@string/string_tag_section_header">
 
             <TextView
                 android:id="@+id/weekTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:gravity="center_vertical"
+                style="@style/section_header"
                 android:text="@{week}"
-                android:textColor="@color/colorWeekText"
-                android:textSize="@dimen/dimen_text_h3"
                 tools:text="12월 2주차" />
         </RelativeLayout>
 
@@ -90,7 +84,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="임블리" />
 
-            <!-- -->
             <TextView
                 android:id="@+id/mAgeTextView"
                 android:layout_width="wrap_content"

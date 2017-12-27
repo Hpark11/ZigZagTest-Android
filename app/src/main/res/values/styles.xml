@@ -8,4 +8,37 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="filter_item">
+        <item name="android:layout_margin">@dimen/dimen_filter_item_base_margin</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:button">@android:color/transparent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/dimen_filter_item_base_padding</item>
+        <item name="android:textSize">@dimen/dimen_text_h4</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="filter_item_age" parent="filter_item">
+        <item name="android:textColor">@color/age_filter_item_color_selector</item>
+        <item name="android:background">@drawable/age_filter_item_selector</item>
+    </style>
+
+    <style name="filter_item_style" parent="filter_item">
+        <item name="android:textColor">@color/style_filter_item_color_selector</item>
+        <item name="android:background">@drawable/style_filter_item_selector</item>
+        <item name="android:tag">1000</item>
+    </style>
+
+    <style name="section_header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/dimen_section_header_base_padding</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/colorWeekText</item>
+        <item name="android:background">@color/colorWeekBackground</item>
+        <item name="android:textSize">@dimen/dimen_text_h3</item>
+        <item name="android:layout_marginBottom">@dimen/dimen_section_header_base_margin</item>
+    </style>
+
 </resources>

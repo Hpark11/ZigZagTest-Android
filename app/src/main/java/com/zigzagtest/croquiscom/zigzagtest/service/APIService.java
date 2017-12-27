@@ -21,7 +21,6 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by croquiscom on 2017. 12. 20..
  */
 final public class APIService {
-    private static final String TAG = APIService.class.getSimpleName();
     private static final String path = "shopList.json";
 
     public static Bitmap getBitmapFromUrl(String stringUrl) {
@@ -35,9 +34,8 @@ final public class APIService {
 
             InputStream inputStream = connection.getInputStream();
             bitmap = BitmapFactory.decodeStream(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
+        } catch (IOException e) {}
+        finally {
             if (connection != null) {
                 connection.disconnect();
             }
@@ -51,9 +49,7 @@ final public class APIService {
         try {
             JSONObject jsonObject = new JSONObject(data);
             result = jsonObject.getString("week");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        } catch (JSONException e) {}
         return result;
     }
 
@@ -68,9 +64,7 @@ final public class APIService {
                 Shop shop = new Shop(item);
                 shopArrayList.add(shop);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        } catch (JSONException e) {}
         return shopArrayList;
     }
 

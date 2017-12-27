@@ -140,7 +140,7 @@ public final class ShopListAdapter extends BaseAdapter {
 
             b.mStyleTextView1.setText(shop.style.length > 0 ? shop.style[0] : "");
             b.mStyleTextView2.setText(shop.style.length > 1 ? shop.style[1] : "");
-            b.mAgeTextView.setText(FilterService.getRepresentativeAgesData(shop.age));
+            b.mAgeTextView.setText(shop.getRepresentativeAgesData());
 
             final String replacedStr = shop.url.replaceAll("(http://www.|www.|http://)([\\w-]+)([.\\w/]+)", "$2");
             final String stringUrl = "https://cf.shop.s.zigzag.kr/images/" + replacedStr + ".jpg";

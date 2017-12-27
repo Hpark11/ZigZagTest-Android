@@ -2,11 +2,14 @@ package com.zigzagtest.croquiscom.zigzagtest.util;
 
 import android.databinding.BindingAdapter;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 import com.zigzagtest.croquiscom.zigzagtest.R;
+
+import java.util.Set;
 
 final public class DataBindingCustomAdapter {
     @BindingAdapter("shopUrl")
@@ -32,4 +35,18 @@ final public class DataBindingCustomAdapter {
             }
         }
     }
+
+    @BindingAdapter("ageFilterMarked")
+    public static void markAgeFilterCondition(CheckBox checkBox, final int[] ageFilter) {
+        final int index = Integer.parseInt((String)checkBox.getTag());
+        checkBox.setChecked(ageFilter[index] == 1);
+    }
+
+    @BindingAdapter("styleFilterMarked")
+    public static void markStyleFilterCondition(CheckBox checkBox, final Set styleFilter) {
+        final String item = String.valueOf(checkBox.getText());
+        checkBox.setChecked(styleFilter.contains(item));
+    }
+
+
 }

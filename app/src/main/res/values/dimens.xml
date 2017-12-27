@@ -4,6 +4,11 @@
     <dimen name="dimen_filter_item_height">32dp</dimen>
     
     <dimen name="dimen_filter_item_base_margin">4dp</dimen>
+    <dimen name="dimen_filter_item_base_padding">6dp</dimen>
 
+    <dimen name="dimen_section_header_base_margin">8dp</dimen>
+    <dimen name="dimen_section_header_base_padding">8dp</dimen>
+
+    <dimen name="dimen_text_h4">14dp</dimen>
     <dimen name="dimen_text_h3">18dp</dimen>
 </resources>
