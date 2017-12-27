@@ -23,26 +23,6 @@ import javax.net.ssl.HttpsURLConnection;
 final public class APIService {
     private static final String path = "shopList.json";
 
-    public static Bitmap getBitmapFromUrl(String stringUrl) {
-        Bitmap bitmap = null;
-        HttpsURLConnection connection = null;
-        try {
-            URL url = new URL(stringUrl);
-            connection = (HttpsURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-
-            InputStream inputStream = connection.getInputStream();
-            bitmap = BitmapFactory.decodeStream(inputStream);
-        } catch (IOException e) {}
-        finally {
-            if (connection != null) {
-                connection.disconnect();
-            }
-        }
-        return bitmap;
-    }
-
     public static String getWeek(Context context) {
         String result = "";
         String data = request(context);

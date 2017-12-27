@@ -35,20 +35,18 @@ public class FilterActivity extends AppCompatActivity {
         mFilterService = new FilterService(this);
         mAgeConditions = mFilterService.getFilterByAges();
         mStyleConditions = mFilterService.getFilterByStyles();
+        refreshButtons();
+    }
 
+    private void initializeFilter() {
+        mAgeConditions = new int[FilterService.AGES.length];
+        mStyleConditions = new HashSet<>();
         refreshButtons();
     }
 
     private void refreshButtons() {
         mBinding.setAgeFilter(mAgeConditions);
         mBinding.setStyleFilter(mStyleConditions);
-    }
-
-    private void initializeFilter() {
-        mAgeConditions = new int[FilterService.AGES.length];
-        mStyleConditions = new HashSet<>();
-
-        refreshButtons();
     }
 
     @Override
@@ -79,7 +77,7 @@ public class FilterActivity extends AppCompatActivity {
 
     @OnClick({R.id.ageBox1, R.id.ageBox2, R.id.ageBox3, R.id.ageBox4, R.id.ageBox5, R.id.ageBox6})
     public void onCheckAgeFilter(CheckBox checkBox) {
-        final int index = Integer.parseInt((String)checkBox.getTag());
+        final int index = Integer.parseInt((String) checkBox.getTag());
         mAgeConditions[index] = checkBox.isChecked() ? 1 : 0;
     }
 
@@ -87,12 +85,10 @@ public class FilterActivity extends AppCompatActivity {
             R.id.styleBox6, R.id.styleBox7, R.id.styleBox8, R.id.styleBox9, R.id.styleBox10,
             R.id.styleBox11, R.id.styleBox12, R.id.styleBox13, R.id.styleBox14})
     public void onCheckStyleFilter(CheckBox checkBox) {
-        if(checkBox.isChecked()) {
+        if (checkBox.isChecked()) {
             mStyleConditions.add(String.valueOf(checkBox.getText()));
         } else {
             mStyleConditions.remove(String.valueOf(checkBox.getText()));
         }
     }
-
-
 }

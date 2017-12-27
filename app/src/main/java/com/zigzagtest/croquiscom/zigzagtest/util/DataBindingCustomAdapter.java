@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 import com.zigzagtest.croquiscom.zigzagtest.R;
+import com.zigzagtest.croquiscom.zigzagtest.extension.CircularImageMask;
 
 import java.util.Set;
 
@@ -17,7 +18,7 @@ final public class DataBindingCustomAdapter {
         if (shopUrl != null) {
             final String replacedStr = shopUrl.replaceAll("(http://www.|www.|http://)([\\w-]+)([.\\w/]+)", "$2");
             final String imageUrl = "https://cf.shop.s.zigzag.kr/images/" + replacedStr + ".jpg";
-            Picasso.with(imageView.getContext()).load(imageUrl).into(imageView);
+            Picasso.with(imageView.getContext()).load(imageUrl).transform(new CircularImageMask()).into(imageView);
         }
     }
 
@@ -47,6 +48,4 @@ final public class DataBindingCustomAdapter {
         final String item = String.valueOf(checkBox.getText());
         checkBox.setChecked(styleFilter.contains(item));
     }
-
-
 }

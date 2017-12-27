@@ -41,4 +41,11 @@
         <item name="android:layout_marginBottom">@dimen/dimen_section_header_base_margin</item>
     </style>
 
+    <style name="padded_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/shop_padded_text_frame</item>
+
+    </style>
+
 </resources>

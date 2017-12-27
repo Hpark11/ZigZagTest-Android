@@ -83,9 +83,7 @@ public final class Shop{
     public String getFirstStyle() {
         return style.length > 0 ? style[0] : "";
     }
-
     public String getSecondStyle() {
         return style.length > 1 ? style[1] : "";
     }
-
 }

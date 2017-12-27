@@ -12,7 +12,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
     private String mWeek;
     private ArrayList<Shop> mShopItems;
 
-    public ShopsAdapter(ArrayList<Shop> shops, String week) {
+    ShopsAdapter(ArrayList<Shop> shops, String week) {
         mShopItems = shops;
         mWeek = week;
     }
@@ -33,7 +33,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
         }
     }
 
-    public void resetShopList(ArrayList<Shop> shops) {
+    void resetShopList(ArrayList<Shop> shops) {
         mShopItems = shops;
         notifyDataSetChanged();
         // scroll reset

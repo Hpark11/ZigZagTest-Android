@@ -82,9 +82,8 @@ final public class FilterService {
         editor.apply();
     }
 
-    private ArrayList<Shop> setStyleMatchesToEachItem(ArrayList<Shop> shops) {
+    private void setStyleMatchesToEachItem(ArrayList<Shop> shops) {
         Set<String> conditionByStyles = getFilterByStyles();
-        ArrayList<Shop> result;
 
         for (int i = 0; i < shops.size(); i++) {
             int matchCount = 0;
@@ -95,11 +94,7 @@ final public class FilterService {
                 }
             }
             shop.setNumberOfMatches(matchCount);
-            shops.set(i, shop);
         }
-
-        result = shops;
-        return result;
     }
 
     private ArrayList<Shop> filteredByAges(ArrayList<Shop> shops) {
@@ -144,11 +139,13 @@ final public class FilterService {
         ArrayList<Shop> result = shops;
 
         if (getFilterByStyles().size() != 0) {
-            result = filteredByStyles(setStyleMatchesToEachItem(result));
+            result = filteredByStyles(result);
         }
         if(needsAgeFilter()) {
             result = filteredByAges(result);
         }
+
+        setStyleMatchesToEachItem(result);
         Collections.sort(result, new Comparator<Shop>() {
             @Override
             public int compare(Shop lhs, Shop rhs) {

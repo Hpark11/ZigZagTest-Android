@@ -4,12 +4,7 @@ import com.zigzagtest.croquiscom.zigzagtest.R;
 
 import java.util.Set;
 
-/**
- * Created by croquiscom on 2017. 12. 26..
- */
-
 final public class ShopStyle {
-    private Set<String> styles;
     private String name;
     private int backgroundColor;
     private int borderColor;
@@ -44,12 +39,5 @@ final public class ShopStyle {
     public int getBorderColor() {
         return borderColor;
     }
-
-    public Set<String> getStyles() {
-        return styles;
-    }
-
-
-
 
 }
