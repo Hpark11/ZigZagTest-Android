@@ -1,32 +1,30 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
-import android.support.annotation.NonNull;
+import android.util.Log;
 
+import com.zigzagtest.croquiscom.zigzagtest.App;
 import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Comparator;
 
-/**
- * Created by croquiscom on 2017. 12. 20..
- */
+public final class Shop {
+    private static final String TAG = Shop.class.getSimpleName();
 
-public final class Shop{
-    public String name;
-    public String url;
-    public String[] style;
-    public int[] age = new int[7];
-    public int score;
+    private String name;
+    private String url;
+    private String[] styles;
+    private int[] ages = new int[7];
+    private int score;
     private int matches = 0;
 
-    public Shop(String name, String url, String style, int[] age, int score) {
+    public Shop(String name, String url, String styles, int[] age, int score) {
         this.name = name;
         this.url = url;
-        this.style = style.split(",");
-        this.age = age;
+        this.styles = styles.split(",");
+        this.ages = age;
         this.score = score;
     }
 
@@ -34,16 +32,16 @@ public final class Shop{
         try {
             this.name = jsonObject.getString("n");
             this.url = jsonObject.getString("u");
-            this.style = jsonObject.getString("S").split(",");
+            this.styles = jsonObject.getString("S").split(",");
 
             JSONArray ageJsonArray = jsonObject.getJSONArray("A");
-            for(int i = 0; i < age.length && i < ageJsonArray.length(); i++) {
-                age[i] = ageJsonArray.getInt(i);
+            for (int i = 0; i < ages.length && i < ageJsonArray.length(); i++) {
+                ages[i] = ageJsonArray.getInt(i);
             }
 
             this.score = jsonObject.getInt("0");
         } catch (JSONException e) {
-            e.printStackTrace();
+            if (App.DEBUG) Log.e(TAG, "Error when Parsing JSON in constructor()");
         }
     }
 
@@ -55,35 +53,56 @@ public final class Shop{
         return matches;
     }
 
+    public String getFirstStyle() {
+        return styles.length > 0 ? styles[0] : "";
+    }
+
+    public String getSecondStyle() {
+        return styles.length > 1 ? styles[1] : "";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int[] getAges() {
+        return ages;
+    }
+
+    public String[] getStyles() {
+        return styles;
+    }
+
     public String getRepresentativeAgesData() {
-        if (age.length != FilterService.AGES.length) {
-            return null;
-        }
+        StringBuilder res = new StringBuilder();
+        String[] groups = new String[3];
+        groups[0] = ages[0] == 1 ? "10대" : "";
 
-        String result = "";
-        String holder = "";
-
-        for(int i = 0; i < age.length; i++) {
-            String ageGroup = FilterService.AGES[i].split(" ")[0];
-
-            if(age[i] == 1) {
-                if (!holder.equals(ageGroup)) {
-                    if (result.length() != 0) {
-                        result += " ";
-                    }
-                    result += ageGroup;
-                    holder = ageGroup;
+        for (int i = 1; i < ages.length; i++) {
+            if (ages[i] == 1) {
+                if (i <= 3) {
+                    groups[1] = "20대";
+                } else {
+                    groups[2] = "30대";
                 }
             }
         }
-
-        return result;
-    }
-
-    public String getFirstStyle() {
-        return style.length > 0 ? style[0] : "";
-    }
-    public String getSecondStyle() {
-        return style.length > 1 ? style[1] : "";
+        for (String s : groups) {
+            if (s != null) {
+                if (res.length() != 0) {
+                    res.append(" ");
+                }
+                res.append(s);
+            }
+        }
+        return res.toString();
     }
 }

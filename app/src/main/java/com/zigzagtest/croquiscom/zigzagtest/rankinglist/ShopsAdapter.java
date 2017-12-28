@@ -36,7 +36,6 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
     void resetShopList(ArrayList<Shop> shops) {
         mShopItems = shops;
         notifyDataSetChanged();
-        // scroll reset
     }
 
     @Override

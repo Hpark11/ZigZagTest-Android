@@ -3,7 +3,9 @@ package com.zigzagtest.croquiscom.zigzagtest.service;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
+import com.zigzagtest.croquiscom.zigzagtest.App;
 import com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop;
 
 import org.json.JSONArray;
@@ -17,10 +19,8 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
-/**
- * Created by croquiscom on 2017. 12. 20..
- */
 final public class APIService {
+    private static final String TAG = APIService.class.getSimpleName();
     private static final String path = "shopList.json";
 
     public static String getWeek(Context context) {
@@ -29,7 +29,9 @@ final public class APIService {
         try {
             JSONObject jsonObject = new JSONObject(data);
             result = jsonObject.getString("week");
-        } catch (JSONException e) {}
+        } catch (JSONException e) {
+            if (App.DEBUG) Log.e(TAG, "Error when Parsing JSON in getWeek()");
+        }
         return result;
     }
 
@@ -44,20 +46,24 @@ final public class APIService {
                 Shop shop = new Shop(item);
                 shopArrayList.add(shop);
             }
-        } catch (JSONException e) {}
+        } catch (JSONException e) {
+            if (App.DEBUG) Log.e(TAG, "Error when Parsing JSON in getShopList()");
+        }
         return shopArrayList;
     }
 
     private static String request(Context context) {
-        byte buffer[] = new byte[0];
         try {
             InputStream is = context.getAssets().open(path);
-            buffer = new byte[is.available()];
-            is.read(buffer);
+            byte buffer[] = new byte[is.available()];
+            final int result = is.read(buffer);
             is.close();
+            if (result != -1) {
+                return new String(buffer);
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            if (App.DEBUG) Log.e(TAG, "Error when reading data in getWeek()");
         }
-        return new String(buffer);
+        return null;
     }
 }

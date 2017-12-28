@@ -9,6 +9,8 @@
     <dimen name="dimen_section_header_base_margin">8dp</dimen>
     <dimen name="dimen_section_header_base_padding">8dp</dimen>
 
-    <dimen name="dimen_text_h4">14dp</dimen>
     <dimen name="dimen_text_h3">18dp</dimen>
+    <dimen name="dimen_text_h4">14dp</dimen>
+    <dimen name="dimen_text_h5">12dp</dimen>
+    <dimen name="dimen_text_h6">11dp</dimen>
 </resources>

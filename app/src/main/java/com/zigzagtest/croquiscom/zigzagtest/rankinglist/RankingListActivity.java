@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class RankingListActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_FILTERING_DONE = 1000;
 
+    private ActivityRankingListBinding mBinding;
     private ArrayList<Shop> mShopItems;
     private ShopsAdapter mShopsAdapter;
     private FilterService mFilterService;
@@ -26,15 +27,15 @@ public class RankingListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ActivityRankingListBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ranking_list);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_ranking_list);
         mFilterService = new FilterService(this);
 
         final String week = APIService.getWeek(this);
         mShopItems = APIService.getShopList(this);
 
         mShopsAdapter = new ShopsAdapter(mFilterService.getFilteredShops(mShopItems), week);
-        binding.shopsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.shopsRecyclerView.setAdapter(mShopsAdapter);
+        mBinding.shopsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mBinding.shopsRecyclerView.setAdapter(mShopsAdapter);
     }
 
     @Override
@@ -56,6 +57,7 @@ public class RankingListActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_FILTERING_DONE && resultCode == RESULT_OK) {
             mShopsAdapter.resetShopList(mFilterService.getFilteredShops(mShopItems));
+            mBinding.shopsRecyclerView.scrollToPosition(0);
         }
     }
 }
