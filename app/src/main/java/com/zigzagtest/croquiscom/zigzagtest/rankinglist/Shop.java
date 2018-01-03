@@ -83,13 +83,15 @@ public final class Shop {
 
         if(mAges[0] == 1) groups.add("10대");
         for (int i = 1; i <= 3; i++) {
-            if (mAges[i] == 1 && !groups.contains("20대")) {
+            if (mAges[i] == 1) {
                 groups.add("20대");
+                break;
             }
         }
         for (int i = 4; i < mAges.length; i++) {
-            if (mAges[i] == 1 && !groups.contains("30대")) {
+            if (mAges[i] == 1) {
                 groups.add("30대");
+                break;
             }
         }
         return TextUtils.join(" ", groups);

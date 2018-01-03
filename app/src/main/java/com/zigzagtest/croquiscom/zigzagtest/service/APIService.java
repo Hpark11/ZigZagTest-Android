@@ -1,8 +1,6 @@
 package com.zigzagtest.croquiscom.zigzagtest.service;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop;
 
 import org.json.JSONArray;
@@ -13,7 +11,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 final public class APIService {
-    private static final String TAG = APIService.class.getSimpleName();
     private static final String path = "shopList.json";
 
     public static String getWeek(Context context) {

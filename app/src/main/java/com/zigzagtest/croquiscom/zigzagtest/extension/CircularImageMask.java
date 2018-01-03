@@ -15,7 +15,6 @@ import android.support.annotation.NonNull;
 import com.squareup.picasso.Transformation;
 
 final public class CircularImageMask implements Transformation {
-
     @Override
     public Bitmap transform(Bitmap source) {
         if (source == null || source.isRecycled()) {

@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.databinding.BindingAdapter;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +40,11 @@ final public class DataBindingCustomAdapter {
 
     @BindingAdapter("interior")
     public static void setTextViewInterior(TextView textView, final String text) {
+        if(text.length() == 0) {
+            textView.setVisibility(View.GONE);
+            return;
+        }
+
         textView.setText(text);
         final ShopStyle colors = FilterService.STYLES.get(text);
         final GradientDrawable drawable = (GradientDrawable) textView.getBackground();
@@ -49,5 +55,4 @@ final public class DataBindingCustomAdapter {
         drawable.setColor(isNotNull ? resources.getColor(colors.getBackgroundColor()) : Color.TRANSPARENT);
         textView.setTextColor(isNotNull ? resources.getColor(colors.getKeyColor()): Color.DKGRAY);
     }
-
 }

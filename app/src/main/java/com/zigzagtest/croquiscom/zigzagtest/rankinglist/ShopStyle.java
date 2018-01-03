@@ -1,8 +1,5 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
-import com.zigzagtest.croquiscom.zigzagtest.R;
-
-
 final public class ShopStyle {
     private int mBackgroundColor;
     private int mKeyColor;
