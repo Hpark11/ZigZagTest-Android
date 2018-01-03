@@ -33,8 +33,8 @@ public class FilterActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mFilterService = new FilterService(this);
-        mAgeConditions = mFilterService.getFilterByAges();
-        mStyleConditions = mFilterService.getFilterByStyles();
+        mAgeConditions = FilterService.getAgeFilter();
+        mStyleConditions = FilterService.getStyleFilter();
         refreshButtons();
     }
 

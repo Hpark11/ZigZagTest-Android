@@ -46,22 +46,28 @@ final public class FilterService {
     }
 
     private SharedPreferences sharedPreferences;
+    private static int[] mAgeFilter = new int[7];
+    private static Set<String> mStyleFilter = new HashSet<String>();
+
     public FilterService(Context context) {
         sharedPreferences = context.getSharedPreferences("filter", Context.MODE_PRIVATE);
+        refreshFilterConditions();
     }
 
-    public int[] getFilterByAges() {
-        int[] result = new int[FilterService.AGES.length];
+    private void refreshFilterConditions() {
         String ageVal = sharedPreferences.getString("ages", "0000000");
-
         for (int i = 0; i < AGES.length; i++) {
-            result[i] = Character.getNumericValue(ageVal.charAt(i));
+            mAgeFilter[i] = Character.getNumericValue(ageVal.charAt(i));
         }
-        return result;
+        mStyleFilter = sharedPreferences.getStringSet("styles", new HashSet<String>());
     }
 
-    public Set<String> getFilterByStyles() {
-        return sharedPreferences.getStringSet("styles", new HashSet<String>());
+    public static int[] getAgeFilter() {
+        return mAgeFilter;
+    }
+
+    public static Set<String> getStyleFilter() {
+        return mStyleFilter;
     }
 
     public void setFilter(final int[] ages, final Set<String> styles) {
@@ -75,31 +81,16 @@ final public class FilterService {
         editor.putString("ages", stringifiedAges.toString());
         editor.putStringSet("styles", styles);
         editor.apply();
-    }
 
-    private void setStyleMatchesToEachItem(ArrayList<Shop> shops) {
-        Set<String> conditionByStyles = getFilterByStyles();
-
-        for (int i = 0; i < shops.size(); i++) {
-            int matchCount = 0;
-            Shop shop = shops.get(i);
-            for (String s : shop.getStyles()) {
-                if (conditionByStyles.contains(s)) {
-                    matchCount++;
-                }
-            }
-            shop.setNumberOfMatches(matchCount);
-        }
+        refreshFilterConditions();
     }
 
     private ArrayList<Shop> filteredByAges(ArrayList<Shop> shops) {
         ArrayList<Shop> result = new ArrayList<>();
-        final int[] conditions = getFilterByAges();
-
         for (Shop shop : shops) {
             final int[] ages = shop.getAges();
             for (int i = 0; i < ages.length; i++) {
-                if (conditions[i] == 1 && ages[i] == 1) {
+                if (mAgeFilter[i] == 1 && ages[i] == 1) {
                     result.add(shop);
                     break;
                 }
@@ -110,11 +101,10 @@ final public class FilterService {
 
     private ArrayList<Shop> filteredByStyles(ArrayList<Shop> shops) {
         ArrayList<Shop> result = new ArrayList<>();
-        final Set<String> conditions = getFilterByStyles();
 
         for (Shop shop : shops) {
             for (String style : shop.getStyles()) {
-                if (conditions.contains(style)) {
+                if (mStyleFilter.contains(style)) {
                     result.add(shop);
                     break;
                 }
@@ -124,8 +114,7 @@ final public class FilterService {
     }
 
     private boolean contains() {
-        final int[] with = getFilterByAges();
-        for (int element : with) {
+        for (int element : mAgeFilter) {
             if (element == 1) return true;
         }
         return false;
@@ -134,7 +123,7 @@ final public class FilterService {
     public ArrayList<Shop> getFilteredShops(ArrayList<Shop> shops) {
         ArrayList<Shop> result = shops;
 
-        if (getFilterByStyles().size() != 0) {
+        if (mStyleFilter.size() != 0) {
             result = filteredByStyles(result);
         }
 
@@ -142,11 +131,13 @@ final public class FilterService {
             result = filteredByAges(result);
         }
 
-        setStyleMatchesToEachItem(result);
         Collections.sort(result, new Comparator<Shop>() {
             @Override
             public int compare(Shop lhs, Shop rhs) {
-                if (lhs.getNumberOfMatches() == rhs.getNumberOfMatches()) {
+                int matchesLeft = lhs.getNumberOfMatches();
+                int matchesRight = rhs.getNumberOfMatches();
+
+                if (matchesLeft == matchesRight) {
                     if (lhs.getScore() > rhs.getScore()) {
                         return -1;
                     } else if (lhs.getScore() == rhs.getScore()) {
@@ -155,7 +146,7 @@ final public class FilterService {
                         return 1;
                     }
                 } else {
-                    return lhs.getNumberOfMatches() > rhs.getNumberOfMatches() ? -1 : 1;
+                    return matchesLeft > matchesRight ? -1 : 1;
                 }
             }
         });

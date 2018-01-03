@@ -1,8 +1,12 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
+import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Set;
 
 
 public final class Shop {
@@ -13,7 +17,6 @@ public final class Shop {
     private String[] mStyles;
     private int[] mAges = new int[7];
     private int mScore;
-    private int mMatches = 0;
 
     public Shop(String name, String url, String styles, int[] ages, int score) {
         this.mName = name;
@@ -38,12 +41,13 @@ public final class Shop {
         } catch (JSONException ignored) {}
     }
 
-    public void setNumberOfMatches(int matches) {
-        this.mMatches = matches;
-    }
-
     public int getNumberOfMatches() {
-        return mMatches;
+        Set<String> styles = FilterService.getStyleFilter();
+        int count = 0;
+        for (String s : mStyles) {
+            count = styles.contains(s) ? count + 1 : count;
+        }
+        return count;
     }
 
     public String getFirstStyle() {
