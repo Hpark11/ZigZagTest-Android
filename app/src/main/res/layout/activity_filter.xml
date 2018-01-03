@@ -41,63 +41,63 @@
                         <TextView
                             style="@style/section_header"
                             android:layout_span="4"
-                            android:text="@string/string_age_group"
-                            android:textColor="@color/color_week_text" />
+                            android:text="@string/age_group"
+                            android:textColor="@color/week_text" />
                     </TableRow>
 
                     <TableRow style="@style/default_table_row">
 
                         <CheckBox
-                            android:id="@+id/ageBox1"
+                            android:id="@+id/ageBox10s"
                             style="@style/filter_item_age"
-                            ageFilterMarked="@{ageFilter}"
+                            ageFilterChecked="@{ageFilter}"
                             android:tag="0"
-                            android:text="@string/string_age_10s" />
+                            android:text="@string/age_10s" />
 
                         <CheckBox
-                            android:id="@+id/ageBox2"
+                            android:id="@+id/ageBoxEarly20s"
                             style="@style/filter_item_age"
-                            ageFilterMarked="@{ageFilter}"
+                            ageFilterChecked="@{ageFilter}"
                             android:tag="1"
-                            android:text="@string/string_age_early_20s" />
+                            android:text="@string/age_early_20s" />
 
                         <CheckBox
-                            android:id="@+id/ageBox3"
+                            android:id="@+id/ageBoxMid20s"
                             style="@style/filter_item_age"
-                            ageFilterMarked="@{ageFilter}"
+                            ageFilterChecked="@{ageFilter}"
                             android:tag="2"
-                            android:text="@string/string_age_mid_20s" />
+                            android:text="@string/age_mid_20s" />
 
                         <CheckBox
-                            android:id="@+id/ageBox4"
+                            android:id="@+id/ageBoxLate20s"
                             style="@style/filter_item_age"
-                            ageFilterMarked="@{ageFilter}"
+                            ageFilterChecked="@{ageFilter}"
                             android:tag="3"
-                            android:text="@string/string_age_late_20s" />
+                            android:text="@string/age_late_20s" />
                     </TableRow>
 
                     <TableRow style="@style/default_table_row">
 
                         <CheckBox
-                            android:id="@+id/ageBox5"
+                            android:id="@+id/ageBoxEarly30s"
                             style="@style/filter_item_age"
-                            ageFilterMarked="@{ageFilter}"
+                            ageFilterChecked="@{ageFilter}"
                             android:tag="4"
-                            android:text="@string/string_age_early_30s" />
+                            android:text="@string/age_early_30s" />
 
                         <CheckBox
-                            android:id="@+id/ageBox6"
+                            android:id="@+id/ageBoxMid30s"
                             style="@style/filter_item_age"
-                            ageFilterMarked="@{ageFilter}"
+                            ageFilterChecked="@{ageFilter}"
                             android:tag="5"
-                            android:text="@string/string_age_mid_30s" />
+                            android:text="@string/age_mid_30s" />
 
                         <CheckBox
-                            android:id="@+id/ageBox7"
+                            android:id="@+id/ageBoxLate30s"
                             style="@style/filter_item_age"
-                            ageFilterMarked="@{ageFilter}"
+                            ageFilterChecked="@{ageFilter}"
                             android:tag="6"
-                            android:text="@string/string_age_late_30s" />
+                            android:text="@string/age_late_30s" />
                     </TableRow>
 
                 </TableLayout>
@@ -111,31 +111,31 @@
 
                         <TextView
                             style="@style/section_header"
-                            android:layout_marginTop="@dimen/dimen_section_header_base_margin"
+                            android:layout_marginTop="@dimen/section_header_base_margin"
                             android:layout_span="3"
-                            android:text="@string/string_style"
-                            android:textColor="@color/color_week_text" />
+                            android:text="@string/style"
+                            android:textColor="@color/week_text" />
                     </TableRow>
 
                     <TableRow style="@style/default_table_row">
 
                         <CheckBox
-                            android:id="@+id/styleBox1"
+                            android:id="@+id/styleBoxFamine"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_famine" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_famine" />
 
                         <CheckBox
-                            android:id="@+id/styleBox2"
+                            android:id="@+id/styleBoxModernCynical"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_modern_cynical" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_modern_cynical" />
 
                         <CheckBox
-                            android:id="@+id/styleBox3"
+                            android:id="@+id/styleBoxSimpleBasic"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_simple_basic" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_simple_basic" />
                     </TableRow>
 
                     <TableRow
@@ -143,79 +143,79 @@
                         android:layout_height="wrap_content">
 
                         <CheckBox
-                            android:id="@+id/styleBox4"
+                            android:id="@+id/styleBoxLovely"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_lovely" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_lovely" />
 
                         <CheckBox
-                            android:id="@+id/styleBox5"
+                            android:id="@+id/styleBoxUnique"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_unique" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_unique" />
 
                         <CheckBox
-                            android:id="@+id/styleBox6"
+                            android:id="@+id/styleBoxMissi"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_missi" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_missi" />
                     </TableRow>
 
                     <TableRow style="@style/default_table_row">
 
                         <CheckBox
-                            android:id="@+id/styleBox7"
+                            android:id="@+id/styleBoxCampusLook"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_campus_look" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_campus_look" />
 
                         <CheckBox
-                            android:id="@+id/styleBox8"
+                            android:id="@+id/styleBoxVintage"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_vintage" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_vintage" />
 
                         <CheckBox
-                            android:id="@+id/styleBox9"
+                            android:id="@+id/styleBoxSexyGlam"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_sexy_glam" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_sexy_glam" />
                     </TableRow>
 
                     <TableRow style="@style/default_table_row">
 
                         <CheckBox
-                            android:id="@+id/styleBox10"
+                            android:id="@+id/styleBoxSchoolLook"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_school_look" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_school_look" />
 
                         <CheckBox
-                            android:id="@+id/styleBox11"
+                            android:id="@+id/styleBoxRomantic"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_romantic" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_romantic" />
 
                         <CheckBox
-                            android:id="@+id/styleBox12"
+                            android:id="@+id/styleBoxOfficeLook"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_office_look" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_office_look" />
                     </TableRow>
 
                     <TableRow style="@style/default_table_row">
 
                         <CheckBox
-                            android:id="@+id/styleBox13"
+                            android:id="@+id/styleBoxLuxury"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_office_look" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_luxury" />
 
                         <CheckBox
-                            android:id="@+id/styleBox14"
+                            android:id="@+id/styleBoxHollywood"
                             style="@style/filter_item_style"
-                            styleFilterMarked="@{styleFilter}"
-                            android:text="@string/string_style_luxury" />
+                            styleFilterChecked="@{styleFilter}"
+                            android:text="@string/style_hollywood" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
@@ -226,9 +226,9 @@
             android:id="@+id/confirmButton"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/color_filter_confirm"
-            android:text="@string/string_confirm"
-            android:textColor="@color/color_white"
+            android:background="@color/filter_confirm"
+            android:text="@string/confirm"
+            android:textColor="@color/white"
             android:textSize="16dp" />
     </LinearLayout>
 </layout>

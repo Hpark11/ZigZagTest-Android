@@ -33,8 +33,8 @@ public class FilterActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mFilterService = new FilterService(this);
-        mAgeConditions = FilterService.getAgeFilter();
-        mStyleConditions = FilterService.getStyleFilter();
+        mAgeConditions = mFilterService.getFilterByAges();
+        mStyleConditions = mFilterService.getFilterByStyles();
         refreshButtons();
     }
 
@@ -75,15 +75,15 @@ public class FilterActivity extends AppCompatActivity {
         finish();
     }
 
-    @OnClick({R.id.ageBox1, R.id.ageBox2, R.id.ageBox3, R.id.ageBox4, R.id.ageBox5, R.id.ageBox6})
+    @OnClick({R.id.ageBox10s, R.id.ageBoxEarly20s, R.id.ageBoxMid20s, R.id.ageBoxLate20s, R.id.ageBoxEarly30s, R.id.ageBoxMid30s})
     public void onCheckAgeFilter(CheckBox checkBox) {
         final int index = Integer.parseInt((String) checkBox.getTag());
         mAgeConditions[index] = checkBox.isChecked() ? 1 : 0;
     }
 
-    @OnClick({R.id.styleBox1, R.id.styleBox2, R.id.styleBox3, R.id.styleBox4, R.id.styleBox5,
-            R.id.styleBox6, R.id.styleBox7, R.id.styleBox8, R.id.styleBox9, R.id.styleBox10,
-            R.id.styleBox11, R.id.styleBox12, R.id.styleBox13, R.id.styleBox14})
+    @OnClick({R.id.styleBoxFamine, R.id.styleBoxModernCynical, R.id.styleBoxSimpleBasic, R.id.styleBoxLovely, R.id.styleBoxUnique,
+            R.id.styleBoxMissi, R.id.styleBoxCampusLook, R.id.styleBoxVintage, R.id.styleBoxSexyGlam, R.id.styleBoxSchoolLook,
+            R.id.styleBoxRomantic, R.id.styleBoxOfficeLook, R.id.styleBoxLuxury, R.id.styleBoxHollywood})
     public void onCheckStyleFilter(CheckBox checkBox) {
         if (checkBox.isChecked()) {
             mStyleConditions.add(String.valueOf(checkBox.getText()));

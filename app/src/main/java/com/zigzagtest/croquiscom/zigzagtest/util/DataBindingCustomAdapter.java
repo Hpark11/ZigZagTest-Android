@@ -4,14 +4,11 @@ import android.content.res.Resources;
 import android.databinding.BindingAdapter;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.view.View;
 import android.widget.CheckBox;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.zigzagtest.croquiscom.zigzagtest.R;
 import com.zigzagtest.croquiscom.zigzagtest.extension.CircularImageMask;
 import com.zigzagtest.croquiscom.zigzagtest.rankinglist.ShopStyle;
 import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
@@ -28,28 +25,14 @@ final public class DataBindingCustomAdapter {
         }
     }
 
-    @BindingAdapter("isSection")
-    public static void resetItemCell(FrameLayout frameLayout, final Boolean isSection) {
-        final String headerTag = frameLayout.getContext()
-                .getResources().getString(R.string.string_tag_section_header);
-        for (int i = 0; i < frameLayout.getChildCount(); i++) {
-            View layout = frameLayout.getChildAt(i);
-            if (layout.getTag().equals(headerTag)) {
-                layout.setVisibility(isSection ? View.VISIBLE : View.GONE);
-            } else {
-                layout.setVisibility(isSection ? View.GONE : View.VISIBLE);
-            }
-        }
-    }
-
-    @BindingAdapter("ageFilterMarked")
-    public static void markAgeFilterCondition(CheckBox checkBox, final int[] ageFilter) {
+    @BindingAdapter("ageFilterChecked")
+    public static void checkAgeFilterCondition(CheckBox checkBox, final int[] ageFilter) {
         final int index = Integer.parseInt((String) checkBox.getTag());
         checkBox.setChecked(ageFilter[index] == 1);
     }
 
-    @BindingAdapter("styleFilterMarked")
-    public static void markStyleFilterCondition(CheckBox checkBox, final Set styleFilter) {
+    @BindingAdapter("styleFilterChecked")
+    public static void checkStyleFilterCondition(CheckBox checkBox, final Set styleFilter) {
         final String item = String.valueOf(checkBox.getText());
         checkBox.setChecked(styleFilter.contains(item));
     }
@@ -60,17 +43,11 @@ final public class DataBindingCustomAdapter {
         final ShopStyle colors = FilterService.STYLES.get(text);
         final GradientDrawable drawable = (GradientDrawable) textView.getBackground();
         final Resources resources = textView.getContext().getResources();
+        final boolean isNotNull = colors != null;
 
-        if (colors != null) {
-            drawable.setStroke(1, resources.getColor(colors.getKeyColor()));
-            drawable.setColor(resources.getColor(colors.getBackgroundColor()));
-            textView.setTextColor(resources.getColor(colors.getKeyColor()));
-        }
-        if (textView.getId() == R.id.ageTextView) {
-            drawable.setStroke(1, Color.DKGRAY);
-            drawable.setColor(Color.TRANSPARENT);
-            textView.setTextColor(Color.DKGRAY);
-        }
+        drawable.setStroke(1, isNotNull ?  resources.getColor(colors.getKeyColor()) : Color.DKGRAY);
+        drawable.setColor(isNotNull ? resources.getColor(colors.getBackgroundColor()) : Color.TRANSPARENT);
+        textView.setTextColor(isNotNull ? resources.getColor(colors.getKeyColor()): Color.DKGRAY);
     }
 
 }

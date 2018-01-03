@@ -3,19 +3,19 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_accent</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
     </style>
 
     <style name="filter_item">
-        <item name="android:layout_margin">@dimen/dimen_filter_item_base_margin</item>
-        <item name="android:layout_height">@dimen/dimen_filter_item_height</item>
+        <item name="android:layout_margin">@dimen/filter_item_base_margin</item>
+        <item name="android:layout_height">@dimen/filter_item_height</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:button">@android:color/transparent</item>
         <item name="android:gravity">center</item>
-        <item name="android:padding">@dimen/dimen_filter_item_base_padding</item>
-        <item name="android:textSize">@dimen/dimen_text_h4</item>
+        <item name="android:padding">@dimen/filter_item_base_padding</item>
+        <item name="android:textSize">@dimen/text_h4</item>
     </style>
 
     <style name="filter_item_age" parent="filter_item">
@@ -31,12 +31,12 @@
 
     <style name="section_header">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/dimen_section_header_height</item>
+        <item name="android:layout_height">@dimen/section_header_height</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textColor">@color/color_week_text</item>
-        <item name="android:background">@color/color_week_background</item>
-        <item name="android:textSize">@dimen/dimen_text_h3</item>
-        <item name="android:paddingLeft">@dimen/dimen_filter_item_base_padding</item>
+        <item name="android:textColor">@color/week_text</item>
+        <item name="android:background">@color/week_background</item>
+        <item name="android:textSize">@dimen/text_h3</item>
+        <item name="android:paddingLeft">@dimen/filter_item_base_padding</item>
     </style>
 
     <style name="padded_label">
@@ -44,7 +44,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/shop_padded_text_frame</item>
         <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:textSize">@dimen/dimen_text_h5</item>
+        <item name="android:textSize">@dimen/text_h5</item>
     </style>
 
     <style name="default_table_row">

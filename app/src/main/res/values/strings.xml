@@ -1,39 +1,39 @@
 <resources>
     <string name="app_name">ZigZagTest</string>
 
-    <string name="string_ranking_label">쇼핑몰 랭킹</string>
-    <string name="string_filter_label">쇼핑몰 필터</string>
+    <string name="ranking_label">쇼핑몰 랭킹</string>
+    <string name="filter_label">쇼핑몰 필터</string>
 
-    <string name="string_initialize">초기화</string>
-    <string name="string_confirm">선택 완료</string>
+    <string name="initialize">초기화</string>
+    <string name="confirm">선택 완료</string>
 
-    <string name="string_age_group">연령대</string>
-    <string name="string_style">스타일</string>
+    <string name="age_group">연령대</string>
+    <string name="style">스타일</string>
 
-    <string name="string_age_10s">10대</string>
-    <string name="string_age_early_20s">20대 초반</string>
-    <string name="string_age_mid_20s">20대 중반</string>
-    <string name="string_age_late_20s">20대 후반</string>
-    <string name="string_age_early_30s">30대 초반</string>
-    <string name="string_age_mid_30s">30대 중반</string>
-    <string name="string_age_late_30s">30대 후반</string>
+    <string name="age_10s">10대</string>
+    <string name="age_early_20s">20대 초반</string>
+    <string name="age_mid_20s">20대 중반</string>
+    <string name="age_late_20s">20대 후반</string>
+    <string name="age_early_30s">30대 초반</string>
+    <string name="age_mid_30s">30대 중반</string>
+    <string name="age_late_30s">30대 후반</string>
 
-    <string name="string_style_famine">페미닌</string>
-    <string name="string_style_modern_cynical">모던시크</string>
-    <string name="string_style_simple_basic">심플베이직</string>
-    <string name="string_style_lovely">러블리</string>
-    <string name="string_style_unique">유니크</string>
-    <string name="string_style_missi">미시스타일</string>
-    <string name="string_style_campus_look">캠퍼스룩</string>
-    <string name="string_style_vintage">빈티지</string>
-    <string name="string_style_sexy_glam">섹시글램</string>
-    <string name="string_style_school_look">스쿨룩</string>
-    <string name="string_style_romantic">로맨틱</string>
-    <string name="string_style_office_look">오피스룩</string>
-    <string name="string_style_luxury">럭셔리</string>
-    <string name="string_style_hollywood">헐리웃</string>
+    <string name="style_famine">페미닌</string>
+    <string name="style_modern_cynical">모던시크</string>
+    <string name="style_simple_basic">심플베이직</string>
+    <string name="style_lovely">러블리</string>
+    <string name="style_unique">유니크</string>
+    <string name="style_missi">미시스타일</string>
+    <string name="style_campus_look">캠퍼스룩</string>
+    <string name="style_vintage">빈티지</string>
+    <string name="style_sexy_glam">섹시글램</string>
+    <string name="style_school_look">스쿨룩</string>
+    <string name="style_romantic">로맨틱</string>
+    <string name="style_office_look">오피스룩</string>
+    <string name="style_luxury">럭셔리</string>
+    <string name="style_hollywood">헐리웃스타일</string>
 
-    <string name="string_tag_section_header">header</string>
-    <string name="string_tag_shop_item">shop</string>
+    <string name="tag_section_header">header</string>
+    <string name="tag_shop_item">shop</string>
 
 </resources>

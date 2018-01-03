@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zigzagtest.croquiscom.zigzagtest">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".rankinglist.RankingListActivity"
-            android:label="@string/string_ranking_label">
+        <activity
+            android:name=".rankinglist.RankingListActivity"
+            android:label="@string/ranking_label">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,9 +22,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".filter.FilterActivity"
-            android:label="@string/string_filter_label">
-        </activity>
+        <activity
+            android:name=".filter.FilterActivity"
+            android:label="@string/filter_label"/>
 
     </application>
 
