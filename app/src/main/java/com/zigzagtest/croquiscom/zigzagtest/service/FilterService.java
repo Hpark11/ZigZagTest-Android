@@ -48,6 +48,9 @@ final public class FilterService {
 
     private SharedPreferences sharedPreferences;
 
+    private static int[] mAgeFilter = new int[7];
+    private static Set<String> mStyleFilter = new HashSet<>();
+
     public FilterService(Context context) {
         sharedPreferences = context.getSharedPreferences("filter", Context.MODE_PRIVATE);
         refreshFilterConditions();
@@ -90,6 +93,7 @@ final public class FilterService {
             final int[] ages = shop.getAges();
             for (int i = 0; i < ages.length; i++) {
                 if (mAgeFilter[i] == 1 && ages[i] == 1) {
+
                     result.add(shop);
                     break;
                 }
@@ -125,7 +129,7 @@ final public class FilterService {
         if (mStyleFilter.size() != 0) {
             result = filteredByStyles(result);
         }
-        if (needsAgeFilter()) {
+        if (contains()) {
             result = filteredByAges(result);
         }
 

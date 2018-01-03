@@ -1,7 +1,8 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
+import android.util.Log;
 
-import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
+import com.zigzagtest.croquiscom.zigzagtest.App;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,18 +14,20 @@ import java.util.Set;
 public final class Shop {
     private static final String TAG = Shop.class.getSimpleName();
 
-    private String mName;
-    private String mUrl;
-    private String[] mStyles;
-    private int[] mAges = new int[7];
-    private int mScore;
 
-    public Shop(String name, String url, String styles, int[] ages, int score) {
-        this.mName = name;
-        this.mUrl = url;
-        this.mStyles = styles.split(",");
-        this.mAges = ages;
-        this.mScore = score;
+    private String name;
+    private String url;
+    private String[] styles;
+    private int[] ages = new int[7];
+    private int score;
+    private int matches = 0;
+
+    public Shop(String name, String url, String styles, int[] age, int score) {
+        this.name = name;
+        this.url = url;
+        this.styles = styles.split(",");
+        this.ages = age;
+        this.score = score;
     }
 
     public Shop(JSONObject jsonObject) {
