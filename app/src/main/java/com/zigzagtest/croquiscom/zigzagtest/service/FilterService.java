@@ -27,27 +27,25 @@ final public class FilterService {
     };
 
     public static final Map<String, ShopStyle> STYLES;
-
     static {
         STYLES = new HashMap<>();
-        STYLES.put("페미닌", new ShopStyle(R.color.color_green_fern, R.color.color_dark_gray));
-        STYLES.put("모던시크", new ShopStyle(R.color.color_green_mountain, R.color.color_dark_gray));
-        STYLES.put("심플베이직", new ShopStyle(R.color.color_blue_picton, R.color.color_blue_whale));
-        STYLES.put("러블리", new ShopStyle(R.color.color_blue_mariner, R.color.color_week_text));
-        STYLES.put("유니크", new ShopStyle(R.color.color_violet_wisteria, R.color.color_violet_gem));
-        STYLES.put("미시스타일", new ShopStyle(R.color.color_blue_mariner, R.color.color_blue_whale));
-        STYLES.put("캠퍼스룩", new ShopStyle(R.color.color_yellow_energy, R.color.color_red_well));
-        STYLES.put("빈티지", new ShopStyle(R.color.color_orange_neon, R.color.color_orange_sun));
-        STYLES.put("섹시글램", new ShopStyle(R.color.color_red_terra, R.color.color_red_well));
-        STYLES.put("스쿨룩", new ShopStyle(R.color.color_yellow_turbo, R.color.color_red_valencia));
-        STYLES.put("로맨틱", new ShopStyle(R.color.color_gray_almond, R.color.color_dark_gray));
-        STYLES.put("오피스룩", new ShopStyle(R.color.color_gray_smoke, R.color.color_light_gray));
-        STYLES.put("럭셔리", new ShopStyle(R.color.color_green_fern, R.color.color_blue_denim));
-        STYLES.put("헐리웃스타일", new ShopStyle(R.color.color_blue_picton, R.color.color_violet_gem));
+        STYLES.put("페미닌", new ShopStyle(R.color.green_fern, R.color.dark_gray));
+        STYLES.put("모던시크", new ShopStyle(R.color.green_mountain, R.color.dark_gray));
+        STYLES.put("심플베이직", new ShopStyle(R.color.blue_picton, R.color.blue_whale));
+        STYLES.put("러블리", new ShopStyle(R.color.blue_mariner, R.color.section_header_text));
+        STYLES.put("유니크", new ShopStyle(R.color.violet_wisteria, R.color.violet_gem));
+        STYLES.put("미시스타일", new ShopStyle(R.color.blue_mariner, R.color.blue_whale));
+        STYLES.put("캠퍼스룩", new ShopStyle(R.color.yellow_energy, R.color.red_well));
+        STYLES.put("빈티지", new ShopStyle(R.color.orange_neon, R.color.orange_sun));
+        STYLES.put("섹시글램", new ShopStyle(R.color.red_terra, R.color.red_well));
+        STYLES.put("스쿨룩", new ShopStyle(R.color.yellow_turbo, R.color.red_valencia));
+        STYLES.put("로맨틱", new ShopStyle(R.color.gray_almond, R.color.dark_gray));
+        STYLES.put("오피스룩", new ShopStyle(R.color.gray_smoke, R.color.light_gray));
+        STYLES.put("럭셔리", new ShopStyle(R.color.green_fern, R.color.blue_denim));
+        STYLES.put("헐리웃스타일", new ShopStyle(R.color.blue_picton, R.color.violet_gem));
     }
 
     private SharedPreferences sharedPreferences;
-
     public FilterService(Context context) {
         sharedPreferences = context.getSharedPreferences("filter", Context.MODE_PRIVATE);
     }
@@ -70,11 +68,11 @@ final public class FilterService {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
 
-        StringBuilder ageVal = new StringBuilder();
-        for (int n : ages) {
-            ageVal.append(String.valueOf(n));
+        StringBuilder stringifiedAges = new StringBuilder();
+        for (int isChecked : ages) {
+            stringifiedAges.append(String.valueOf(isChecked));
         }
-        editor.putString("ages", ageVal.toString());
+        editor.putString("ages", stringifiedAges.toString());
         editor.putStringSet("styles", styles);
         editor.apply();
     }
@@ -101,7 +99,7 @@ final public class FilterService {
         for (Shop shop : shops) {
             final int[] ages = shop.getAges();
             for (int i = 0; i < ages.length; i++) {
-                if (ages[i] == conditions[i] && ages[i] == 1) {
+                if (conditions[i] == 1 && ages[i] == 1) {
                     result.add(shop);
                     break;
                 }
@@ -125,7 +123,7 @@ final public class FilterService {
         return result;
     }
 
-    private boolean needsAgeFilter() {
+    private boolean contains() {
         final int[] with = getFilterByAges();
         for (int element : with) {
             if (element == 1) return true;
@@ -139,7 +137,8 @@ final public class FilterService {
         if (getFilterByStyles().size() != 0) {
             result = filteredByStyles(result);
         }
-        if (needsAgeFilter()) {
+
+        if (contains()) {
             result = filteredByAges(result);
         }
 

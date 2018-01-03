@@ -1,10 +1,5 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
-import android.util.Log;
-
-import com.zigzagtest.croquiscom.zigzagtest.App;
-import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,81 +8,79 @@ import org.json.JSONObject;
 public final class Shop {
     private static final String TAG = Shop.class.getSimpleName();
 
-    private String name;
-    private String url;
-    private String[] styles;
-    private int[] ages = new int[7];
-    private int score;
-    private int matches = 0;
+    private String mName;
+    private String mUrl;
+    private String[] mStyles;
+    private int[] mAges = new int[7];
+    private int mScore;
+    private int mMatches = 0;
 
-    public Shop(String name, String url, String styles, int[] age, int score) {
-        this.name = name;
-        this.url = url;
-        this.styles = styles.split(",");
-        this.ages = age;
-        this.score = score;
+    public Shop(String name, String url, String styles, int[] ages, int score) {
+        this.mName = name;
+        this.mUrl = url;
+        this.mStyles = styles.split(",");
+        this.mAges = ages;
+        this.mScore = score;
     }
 
     public Shop(JSONObject jsonObject) {
         try {
-            this.name = jsonObject.getString("n");
-            this.url = jsonObject.getString("u");
-            this.styles = jsonObject.getString("S").split(",");
+            this.mName = jsonObject.getString("n");
+            this.mUrl = jsonObject.getString("u");
+            this.mStyles = jsonObject.getString("S").split(",");
 
             JSONArray ageJsonArray = jsonObject.getJSONArray("A");
-            for (int i = 0; i < ages.length && i < ageJsonArray.length(); i++) {
-                ages[i] = ageJsonArray.getInt(i);
+            for (int i = 0; i < mAges.length && i < ageJsonArray.length(); i++) {
+                mAges[i] = ageJsonArray.getInt(i);
             }
 
-            this.score = jsonObject.getInt("0");
-        } catch (JSONException e) {
-            if (App.DEBUG) Log.e(TAG, "Error when Parsing JSON in constructor()");
-        }
+            this.mScore = jsonObject.getInt("0");
+        } catch (JSONException ignored) {}
     }
 
     public void setNumberOfMatches(int matches) {
-        this.matches = matches;
+        this.mMatches = matches;
     }
 
     public int getNumberOfMatches() {
-        return matches;
+        return mMatches;
     }
 
     public String getFirstStyle() {
-        return styles.length > 0 ? styles[0] : "";
+        return mStyles.length > 0 ? mStyles[0] : "";
     }
 
     public String getSecondStyle() {
-        return styles.length > 1 ? styles[1] : "";
+        return mStyles.length > 1 ? mStyles[1] : "";
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public String getUrl() {
-        return url;
+        return mUrl;
     }
 
     public int getScore() {
-        return score;
+        return mScore;
     }
 
     public int[] getAges() {
-        return ages;
+        return mAges;
     }
 
     public String[] getStyles() {
-        return styles;
+        return mStyles;
     }
 
     public String getRepresentativeAgesData() {
         StringBuilder res = new StringBuilder();
         String[] groups = new String[3];
-        groups[0] = ages[0] == 1 ? "10대" : "";
+        groups[0] = mAges[0] == 1 ? "10대" : "";
 
-        for (int i = 1; i < ages.length; i++) {
-            if (ages[i] == 1) {
+        for (int i = 1; i < mAges.length; i++) {
+            if (mAges[i] == 1) {
                 if (i <= 3) {
                     groups[1] = "20대";
                 } else {

@@ -1,26 +1,17 @@
 package com.zigzagtest.croquiscom.zigzagtest.service;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 
-import com.zigzagtest.croquiscom.zigzagtest.App;
 import com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 
-import javax.net.ssl.HttpsURLConnection;
-
 final public class APIService {
-    private static final String TAG = APIService.class.getSimpleName();
     private static final String path = "shopList.json";
 
     public static String getWeek(Context context) {
@@ -29,9 +20,7 @@ final public class APIService {
         try {
             JSONObject jsonObject = new JSONObject(data);
             result = jsonObject.getString("week");
-        } catch (JSONException e) {
-            if (App.DEBUG) Log.e(TAG, "Error when Parsing JSON in getWeek()");
-        }
+        } catch (JSONException ignored) {}
         return result;
     }
 
@@ -46,9 +35,7 @@ final public class APIService {
                 Shop shop = new Shop(item);
                 shopArrayList.add(shop);
             }
-        } catch (JSONException e) {
-            if (App.DEBUG) Log.e(TAG, "Error when Parsing JSON in getShopList()");
-        }
+        } catch (JSONException ignored) {}
         return shopArrayList;
     }
 
@@ -61,9 +48,7 @@ final public class APIService {
             if (result != -1) {
                 return new String(buffer);
             }
-        } catch (Exception e) {
-            if (App.DEBUG) Log.e(TAG, "Error when reading data in getWeek()");
-        }
+        } catch (Exception ignored) {}
         return null;
     }
 }

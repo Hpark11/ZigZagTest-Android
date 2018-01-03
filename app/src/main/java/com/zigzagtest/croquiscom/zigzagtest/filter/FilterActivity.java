@@ -60,12 +60,12 @@ public class FilterActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.initializeFilter:
                 initializeFilter();
-                break;
+                return true;
             case R.id.closeFilter:
                 finish();
-                break;
+                return true;
         }
-        return true;
+        return false;
     }
 
     @OnClick(R.id.confirmButton)

@@ -18,10 +18,7 @@ final public class CircularImageMask implements Transformation {
 
     @Override
     public Bitmap transform(Bitmap source) {
-        if (source == null || source.isRecycled()) {
-            return null;
-        }
-
+        if (source == null || source.isRecycled()) { return null; }
         final int width = source.getWidth();
         final int height = source.getHeight();
 
@@ -35,9 +32,7 @@ final public class CircularImageMask implements Transformation {
         float radius = width > height ? ((float) height) / 2f : ((float) width) / 2f;
         canvas.drawCircle(width / 2, height / 2, radius, paint);
 
-        if (canvasBitmap != source) {
-            source.recycle();
-        }
+        if (canvasBitmap != source) { source.recycle(); }
         return canvasBitmap;
     }
 

@@ -1,41 +1,55 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.zigzagtest.croquiscom.zigzagtest.databinding.ItemSectionHeaderBinding;
 import com.zigzagtest.croquiscom.zigzagtest.databinding.ItemShopBinding;
+import com.zigzagtest.croquiscom.zigzagtest.service.APIService;
+import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
 
 import java.util.ArrayList;
 
-public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> {
+final public class ShopsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private String mWeek;
+    private ArrayList<Shop> mOriginalShopItems;
     private ArrayList<Shop> mShopItems;
+    private FilterService mFilterService;
 
-    ShopsAdapter(ArrayList<Shop> shops, String week) {
-        mShopItems = shops;
-        mWeek = week;
+    ShopsAdapter(Context context) {
+        mFilterService = new FilterService(context);
+        mWeek = APIService.getWeek(context);
+        mOriginalShopItems = APIService.getShopList(context);
+        resetShopList();
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ItemShopBinding itemShopBinding = ItemShopBinding.inflate(layoutInflater, parent, false);
-        return new ViewHolder(itemShopBinding);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        if (position == 0) {
-            holder.bindSectionHeader(mWeek);
-        } else {
-            holder.bindItem(mShopItems.get(position - 1), position);
+        switch (viewType) {
+            case 0: return new HeaderViewHolder(ItemSectionHeaderBinding.inflate(layoutInflater, parent, false));
+            default: return new ItemViewHolder(ItemShopBinding.inflate(layoutInflater, parent, false));
         }
     }
 
-    void resetShopList(ArrayList<Shop> shops) {
-        mShopItems = shops;
+    @Override
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        switch (holder.getItemViewType()) {
+            case 0: ((HeaderViewHolder) holder).bindSectionHeader(); break;
+            default: ((ItemViewHolder) holder).bindItem(mShopItems.get(position - 1), position); break;
+        }
+    }
+
+    void resetShopList() {
+        mShopItems = mFilterService.getFilteredShops(mOriginalShopItems);
         notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
@@ -43,25 +57,32 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
         return mShopItems.size() + 1;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        private final ItemShopBinding mItemBinding;
+    class ItemViewHolder extends RecyclerView.ViewHolder {
+        private final ItemShopBinding mBinding;
 
-        private ViewHolder(ItemShopBinding itemShopBinding) {
+        private ItemViewHolder(ItemShopBinding itemShopBinding) {
             super(itemShopBinding.getRoot());
-            mItemBinding = itemShopBinding;
+            mBinding = itemShopBinding;
         }
 
         void bindItem(Shop shop, int rank) {
-            mItemBinding.setShop(shop);
-            mItemBinding.setRank(String.valueOf(rank));
-            mItemBinding.setIsSection(false);
-            mItemBinding.executePendingBindings();
+            mBinding.setShop(shop);
+            mBinding.setRank(String.valueOf(rank));
+            mBinding.executePendingBindings();
+        }
+    }
+
+    class HeaderViewHolder extends RecyclerView.ViewHolder {
+        private final ItemSectionHeaderBinding mBinding;
+
+        private HeaderViewHolder(ItemSectionHeaderBinding headerBinding) {
+            super(headerBinding.getRoot());
+            mBinding = headerBinding;
         }
 
-        void bindSectionHeader(String week) {
-            mItemBinding.setWeek(week);
-            mItemBinding.setIsSection(true);
-            mItemBinding.executePendingBindings();
+        void bindSectionHeader() {
+            mBinding.setWeek(mWeek);
+            mBinding.executePendingBindings();
         }
     }
 }

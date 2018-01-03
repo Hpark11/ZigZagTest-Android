@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".rankinglist.RankingListActivity"
-            android:label="@string/string_ranking_label">
+            android:label="@string/ranking_label">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
         </activity>
 
         <activity android:name=".filter.FilterActivity"
-            android:label="@string/string_filter_label">
+            android:label="@string/filter_label">
         </activity>
 
     </application>
