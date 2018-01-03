@@ -1,5 +1,6 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
+
 import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
 
 import org.json.JSONArray;
@@ -28,63 +29,64 @@ public final class Shop {
 
     public Shop(JSONObject jsonObject) {
         try {
-            this.mName = jsonObject.getString("n");
-            this.mUrl = jsonObject.getString("u");
-            this.mStyles = jsonObject.getString("S").split(",");
+            this.name = jsonObject.getString("n");
+            this.url = jsonObject.getString("u");
+            this.styles = jsonObject.getString("S").split(",");
 
             JSONArray ageJsonArray = jsonObject.getJSONArray("A");
-            for (int i = 0; i < mAges.length && i < ageJsonArray.length(); i++) {
-                mAges[i] = ageJsonArray.getInt(i);
+            for (int i = 0; i < ages.length && i < ageJsonArray.length(); i++) {
+                ages[i] = ageJsonArray.getInt(i);
             }
 
-            this.mScore = jsonObject.getInt("0");
-        } catch (JSONException ignored) {}
+            this.score = jsonObject.getInt("0");
+        } catch (JSONException e) {
+            if (App.DEBUG) Log.e(TAG, "Error when Parsing JSON in constructor()");
+        }
+    }
+
+    public void setNumberOfMatches(int matches) {
+        this.matches = matches;
     }
 
     public int getNumberOfMatches() {
-        Set<String> styles = FilterService.getStyleFilter();
-        int count = 0;
-        for (String s : mStyles) {
-            count = styles.contains(s) ? count + 1 : count;
-        }
-        return count;
+        return matches;
     }
 
     public String getFirstStyle() {
-        return mStyles.length > 0 ? mStyles[0] : "";
+        return styles.length > 0 ? styles[0] : "";
     }
 
     public String getSecondStyle() {
-        return mStyles.length > 1 ? mStyles[1] : "";
+        return styles.length > 1 ? styles[1] : "";
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public String getUrl() {
-        return mUrl;
+        return url;
     }
 
     public int getScore() {
-        return mScore;
+        return score;
     }
 
     public int[] getAges() {
-        return mAges;
+        return ages;
     }
 
     public String[] getStyles() {
-        return mStyles;
+        return styles;
     }
 
     public String getRepresentativeAgesData() {
         StringBuilder res = new StringBuilder();
         String[] groups = new String[3];
-        groups[0] = mAges[0] == 1 ? "10대" : "";
+        groups[0] = ages[0] == 1 ? "10대" : "";
 
-        for (int i = 1; i < mAges.length; i++) {
-            if (mAges[i] == 1) {
+        for (int i = 1; i < ages.length; i++) {
+            if (ages[i] == 1) {
                 if (i <= 3) {
                     groups[1] = "20대";
                 } else {

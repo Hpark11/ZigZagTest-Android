@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#EC407A</color>
-    <color name="primary_dark">#E91E63</color>
-    <color name="accent">#FF4081</color>
-    <color name="section_header_background">#eeeeee</color>
-    <color name="section_header_text">#151515</color>
-    <color name="filter_confirm">#0097A7</color>
-    <color name="white">#FFFFFF</color>
-    <color name="dark_gray">#666666</color>
-    <color name="light_gray">#BBBBBB</color>
-    <color name="filter_ages">#1976D2</color>
-    <color name="filter_styles">#D81B60</color>
-    <color name="green_fern">#6ABB72</color>
-    <color name="green_mountain">#3ABB9D</color>
-    <color name="green_chateau">#4DA664</color>
-    <color name="green_persian">#2CA786</color>
-    <color name="blue_picton">#5CADCF</color>
-    <color name="blue_mariner">#3585C5</color>
-    <color name="blue_curious">#4590B6</color>
-    <color name="blue_denim">#2F6CAD</color>
-    <color name="blue_chambray">#485675</color>
-    <color name="blue_whale">#29334D</color>
-    <color name="violet_wisteria">#9069B5</color>
-    <color name="violet_gem">#533D7F</color>
-    <color name="yellow_energy">#F2D46F</color>
-    <color name="yellow_turbo">#F7C23E</color>
-    <color name="orange_neon">#F79E3D</color>
-    <color name="orange_sun">#EE7841</color>
-    <color name="red_terra">#E66B5B</color>
-    <color name="red_valencia">#CC4846</color>
-    <color name="red_cinnabar">#DC5047</color>
-    <color name="red_well">#B33234</color>
-    <color name="gray_almond">#A28F85</color>
-    <color name="gray_smoke">#EFEFEF</color>
-    <color name="gray_iron">#D1D5D8</color>
-    <color name="gray_irongray">#75706B</color>
+    <color name="color_primary">#EC407A</color>
+    <color name="color_primary_dark">#E91E63</color>
+    <color name="color_accent">#FF4081</color>
+    <color name="color_week_background">#eeeeee</color>
+    <color name="color_week_text">#151515</color>
+    <color name="color_filter_confirm">#0097A7</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_dark_gray">#666666</color>
+    <color name="color_light_gray">#BBBBBB</color>
+
+    <color name="color_filter_ages">#1976D2</color>
+    <color name="color_filter_styles">#D81B60</color>
+
+    <color name="color_green_fern">#6ABB72</color>
+    <color name="color_green_mountain">#3ABB9D</color>
+    <color name="color_green_chateau">#4DA664</color>
+    <color name="color_green_persian">#2CA786</color>
+
+    <color name="color_blue_picton">#5CADCF</color>
+    <color name="color_blue_mariner">#3585C5</color>
+    <color name="color_blue_curious">#4590B6</color>
+    <color name="color_blue_denim">#2F6CAD</color>
+    <color name="color_blue_chambray">#485675</color>
+    <color name="color_blue_whale">#29334D</color>
+
+    <color name="color_violet_wisteria">#9069B5</color>
+    <color name="color_violet_gem">#533D7F</color>
+
+    <color name="color_yellow_energy">#F2D46F</color>
+    <color name="color_yellow_turbo">#F7C23E</color>
+
+    <color name="color_orange_neon">#F79E3D</color>
+    <color name="color_orange_sun">#EE7841</color>
+
+    <color name="color_red_terra">#E66B5B</color>
+    <color name="color_red_valencia">#CC4846</color>
+    <color name="color_red_cinnabar">#DC5047</color>
+    <color name="color_red_well">#B33234</color>
+
+    <color name="color_gray_almond">#A28F85</color>
+    <color name="color_gray_smoke">#EFEFEF</color>
+    <color name="color_gray_iron">#D1D5D8</color>
+    <color name="color_gray_irongray">#75706B</color>
 </resources>

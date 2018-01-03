@@ -1,5 +1,6 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
+import com.zigzagtest.croquiscom.zigzagtest.R;
 
 
 final public class ShopStyle {
@@ -14,6 +15,7 @@ final public class ShopStyle {
     public int getBackgroundColor() {
         return mBackgroundColor;
     }
+
     public int getKeyColor() {
         return mKeyColor;
     }

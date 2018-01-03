@@ -11,17 +11,29 @@ import android.view.MenuItem;
 import com.zigzagtest.croquiscom.zigzagtest.R;
 import com.zigzagtest.croquiscom.zigzagtest.databinding.ActivityRankingListBinding;
 import com.zigzagtest.croquiscom.zigzagtest.filter.FilterActivity;
+import com.zigzagtest.croquiscom.zigzagtest.service.APIService;
+import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
+
+import java.util.ArrayList;
 
 public class RankingListActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_FILTERING_DONE = 1000;
+
     private ActivityRankingListBinding mBinding;
+    private ArrayList<Shop> mShopItems;
     private ShopsAdapter mShopsAdapter;
+    private FilterService mFilterService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_ranking_list);
-        mShopsAdapter = new ShopsAdapter(this);
+        mFilterService = new FilterService(this);
+
+        final String week = APIService.getWeek(this);
+        mShopItems = APIService.getShopList(this);
+
+        mShopsAdapter = new ShopsAdapter(mFilterService.getFilteredShops(mShopItems), week);
         mBinding.shopsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mBinding.shopsRecyclerView.setAdapter(mShopsAdapter);
     }
@@ -29,22 +41,22 @@ public class RankingListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_rankinglist, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.openFilter) {
-            startActivityForResult(new Intent(this, FilterActivity.class), REQUEST_CODE_FILTERING_DONE);
-            return true;
+            Intent intent = new Intent(this, FilterActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_FILTERING_DONE);
         }
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_FILTERING_DONE && resultCode == RESULT_OK) {
-            mShopsAdapter.resetShopList();
+            mShopsAdapter.resetShopList(mFilterService.getFilteredShops(mShopItems));
             mBinding.shopsRecyclerView.scrollToPosition(0);
         }
     }
