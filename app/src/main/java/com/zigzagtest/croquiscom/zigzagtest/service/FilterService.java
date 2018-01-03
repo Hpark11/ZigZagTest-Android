@@ -93,7 +93,6 @@ final public class FilterService {
             final int[] ages = shop.getAges();
             for (int i = 0; i < ages.length; i++) {
                 if (mAgeFilter[i] == 1 && ages[i] == 1) {
-
                     result.add(shop);
                     break;
                 }

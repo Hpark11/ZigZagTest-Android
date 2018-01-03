@@ -14,7 +14,6 @@ import java.util.Set;
 public final class Shop {
     private static final String TAG = Shop.class.getSimpleName();
 
-
     private String name;
     private String url;
     private String[] styles;
