@@ -17,12 +17,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:tag="@string/tag_shop_item">
+        android:tag="@string/tag_shop_item"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="52dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:text="@{rank}"
             android:gravity="center"
@@ -33,7 +33,6 @@
             shopUrl="@{shop.url}"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
             android:layout_marginLeft="6dp"
             tools:ignore="contentDescription" />
 

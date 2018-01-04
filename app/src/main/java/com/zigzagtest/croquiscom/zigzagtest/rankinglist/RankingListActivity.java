@@ -1,5 +1,6 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
+
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;

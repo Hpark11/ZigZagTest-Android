@@ -1,7 +1,6 @@
 package com.zigzagtest.croquiscom.zigzagtest.service;
 
 import android.content.Context;
-
 import com.zigzagtest.croquiscom.zigzagtest.rankinglist.Shop;
 
 import org.json.JSONArray;
@@ -20,7 +19,8 @@ final public class APIService {
         try {
             JSONObject jsonObject = new JSONObject(data);
             result = jsonObject.getString("week");
-        } catch (JSONException ignored) {}
+        } catch (JSONException ignored) {
+        }
         return result;
     }
 
@@ -35,7 +35,8 @@ final public class APIService {
                 Shop shop = new Shop(item);
                 shopArrayList.add(shop);
             }
-        } catch (JSONException ignored) {}
+        } catch (JSONException ignored) {
+        }
         return shopArrayList;
     }
 
@@ -48,7 +49,8 @@ final public class APIService {
             if (result != -1) {
                 return new String(buffer);
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         return null;
     }
 }

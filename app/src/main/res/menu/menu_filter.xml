@@ -4,11 +4,11 @@
     <item
         android:id="@+id/initializeFilter"
         android:orderInCategory="1"
-        app:showAsAction="ifRoom"
-        android:title="@string/initialize"/>
+        android:title="@string/initialize"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/closeFilter"
         android:orderInCategory="1"
-        app:showAsAction="ifRoom"
-        android:title="@string/menu_exit"/>
+        android:title="X"
+        app:showAsAction="ifRoom" />
 </menu>

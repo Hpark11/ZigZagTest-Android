@@ -27,12 +27,13 @@ final public class FilterService {
     };
 
     public static final Map<String, ShopStyle> STYLES;
+
     static {
         STYLES = new HashMap<>();
         STYLES.put("페미닌", new ShopStyle(R.color.green_fern, R.color.dark_gray));
         STYLES.put("모던시크", new ShopStyle(R.color.green_mountain, R.color.dark_gray));
         STYLES.put("심플베이직", new ShopStyle(R.color.blue_picton, R.color.blue_whale));
-        STYLES.put("러블리", new ShopStyle(R.color.blue_mariner, R.color.section_header_text));
+        STYLES.put("러블리", new ShopStyle(R.color.blue_mariner, R.color.week_text));
         STYLES.put("유니크", new ShopStyle(R.color.violet_wisteria, R.color.violet_gem));
         STYLES.put("미시스타일", new ShopStyle(R.color.blue_mariner, R.color.blue_whale));
         STYLES.put("캠퍼스룩", new ShopStyle(R.color.yellow_energy, R.color.red_well));
@@ -46,51 +47,46 @@ final public class FilterService {
     }
 
     private SharedPreferences sharedPreferences;
-    private static int[] mAgeFilter = new int[7];
-    private static Set<String> mStyleFilter = new HashSet<String>();
 
     public FilterService(Context context) {
         sharedPreferences = context.getSharedPreferences("filter", Context.MODE_PRIVATE);
-        refreshFilterConditions();
     }
 
-    private void refreshFilterConditions() {
+    public int[] getFilterByAges() {
+        int[] result = new int[FilterService.AGES.length];
         String ageVal = sharedPreferences.getString("ages", "0000000");
+
         for (int i = 0; i < AGES.length; i++) {
-            mAgeFilter[i] = Character.getNumericValue(ageVal.charAt(i));
+            result[i] = Character.getNumericValue(ageVal.charAt(i));
         }
-        mStyleFilter = sharedPreferences.getStringSet("styles", new HashSet<String>());
+        return result;
     }
 
-    public static int[] getAgeFilter() {
-        return mAgeFilter;
-    }
-
-    public static Set<String> getStyleFilter() {
-        return mStyleFilter;
+    public Set<String> getFilterByStyles() {
+        return sharedPreferences.getStringSet("styles", new HashSet<String>());
     }
 
     public void setFilter(final int[] ages, final Set<String> styles) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
 
-        StringBuilder stringifiedAges = new StringBuilder();
-        for (int isChecked : ages) {
-            stringifiedAges.append(String.valueOf(isChecked));
+        StringBuilder ageVal = new StringBuilder();
+        for (int n : ages) {
+            ageVal.append(String.valueOf(n));
         }
-        editor.putString("ages", stringifiedAges.toString());
+        editor.putString("ages", ageVal.toString());
         editor.putStringSet("styles", styles);
         editor.apply();
-
-        refreshFilterConditions();
     }
 
     private ArrayList<Shop> filteredByAges(ArrayList<Shop> shops) {
         ArrayList<Shop> result = new ArrayList<>();
+        final int[] conditions = getFilterByAges();
+
         for (Shop shop : shops) {
             final int[] ages = shop.getAges();
             for (int i = 0; i < ages.length; i++) {
-                if (mAgeFilter[i] == 1 && ages[i] == 1) {
+                if (conditions[i] == 1 && ages[i] == 1) {
                     result.add(shop);
                     break;
                 }
@@ -101,10 +97,11 @@ final public class FilterService {
 
     private ArrayList<Shop> filteredByStyles(ArrayList<Shop> shops) {
         ArrayList<Shop> result = new ArrayList<>();
+        final Set<String> conditions = getFilterByStyles();
 
         for (Shop shop : shops) {
             for (String style : shop.getStyles()) {
-                if (mStyleFilter.contains(style)) {
+                if (conditions.contains(style)) {
                     result.add(shop);
                     break;
                 }
@@ -114,7 +111,8 @@ final public class FilterService {
     }
 
     private boolean contains() {
-        for (int element : mAgeFilter) {
+        final int[] with = getFilterByAges();
+        for (int element : with) {
             if (element == 1) return true;
         }
         return false;
@@ -122,8 +120,9 @@ final public class FilterService {
 
     public ArrayList<Shop> getFilteredShops(ArrayList<Shop> shops) {
         ArrayList<Shop> result = shops;
+        final Set<String> styles = getFilterByStyles();
 
-        if (mStyleFilter.size() != 0) {
+        if (styles.size() != 0) {
             result = filteredByStyles(result);
         }
 
@@ -134,8 +133,8 @@ final public class FilterService {
         Collections.sort(result, new Comparator<Shop>() {
             @Override
             public int compare(Shop lhs, Shop rhs) {
-                int matchesLeft = lhs.getNumberOfMatches();
-                int matchesRight = rhs.getNumberOfMatches();
+                int matchesLeft = lhs.getMatches(styles);
+                int matchesRight = rhs.getMatches(styles);
 
                 if (matchesLeft == matchesRight) {
                     if (lhs.getScore() > rhs.getScore()) {

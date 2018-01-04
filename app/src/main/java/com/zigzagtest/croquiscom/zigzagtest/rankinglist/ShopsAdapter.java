@@ -29,16 +29,22 @@ final public class ShopsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         switch (viewType) {
-            case 0: return new HeaderViewHolder(ItemSectionHeaderBinding.inflate(layoutInflater, parent, false));
-            default: return new ItemViewHolder(ItemShopBinding.inflate(layoutInflater, parent, false));
+            case 0:
+                return new HeaderViewHolder(ItemSectionHeaderBinding.inflate(layoutInflater, parent, false));
+            default:
+                return new ItemViewHolder(ItemShopBinding.inflate(layoutInflater, parent, false));
         }
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
-            case 0: ((HeaderViewHolder) holder).bindSectionHeader(); break;
-            default: ((ItemViewHolder) holder).bindItem(mShopItems.get(position - 1), position); break;
+            case 0:
+                ((HeaderViewHolder) holder).bindSectionHeader();
+                break;
+            default:
+                ((ItemViewHolder) holder).bindItem(mShopItems.get(position - 1), position);
+                break;
         }
     }
 
@@ -86,3 +92,4 @@ final public class ShopsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 }
+

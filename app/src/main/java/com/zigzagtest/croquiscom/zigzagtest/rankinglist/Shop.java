@@ -1,13 +1,14 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
-import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
+import android.text.TextUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-
 
 public final class Shop {
     private static final String TAG = Shop.class.getSimpleName();
@@ -41,11 +42,10 @@ public final class Shop {
         } catch (JSONException ignored) {}
     }
 
-    public int getNumberOfMatches() {
-        Set<String> styles = FilterService.getStyleFilter();
+    public int getMatches(final Set<String> styles) {
         int count = 0;
-        for (String s : mStyles) {
-            count = styles.contains(s) ? count + 1 : count;
+        for(String s: styles) {
+            if(styles.contains(s)) { count++; }
         }
         return count;
     }
@@ -79,27 +79,21 @@ public final class Shop {
     }
 
     public String getRepresentativeAgesData() {
-        StringBuilder res = new StringBuilder();
-        String[] groups = new String[3];
-        groups[0] = mAges[0] == 1 ? "10대" : "";
+        List<String> groups = new ArrayList<>();
 
-        for (int i = 1; i < mAges.length; i++) {
+        if(mAges[0] == 1) groups.add("10대");
+        for (int i = 1; i <= 3; i++) {
             if (mAges[i] == 1) {
-                if (i <= 3) {
-                    groups[1] = "20대";
-                } else {
-                    groups[2] = "30대";
-                }
+                groups.add("20대");
+                break;
             }
         }
-        for (String s : groups) {
-            if (s != null) {
-                if (res.length() != 0) {
-                    res.append(" ");
-                }
-                res.append(s);
+        for (int i = 4; i < mAges.length; i++) {
+            if (mAges[i] == 1) {
+                groups.add("30대");
+                break;
             }
         }
-        return res.toString();
+        return TextUtils.join(" ", groups);
     }
 }

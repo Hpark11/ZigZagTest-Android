@@ -33,8 +33,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/section_header_height</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textColor">@color/section_header_text</item>
-        <item name="android:background">@color/section_header_background</item>
+        <item name="android:textColor">@color/week_text</item>
+        <item name="android:background">@color/week_background</item>
         <item name="android:textSize">@dimen/text_h3</item>
         <item name="android:paddingLeft">@dimen/filter_item_base_padding</item>
     </style>
