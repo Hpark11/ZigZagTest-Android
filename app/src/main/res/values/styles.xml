@@ -42,7 +42,6 @@
     <style name="padded_label">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/shop_padded_text_frame</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textSize">@dimen/text_h5</item>
     </style>

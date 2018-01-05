@@ -35,6 +35,7 @@ public class FilterActivity extends AppCompatActivity {
         mFilterService = new FilterService(this);
         mAgeConditions = mFilterService.getFilterByAges();
         mStyleConditions = mFilterService.getFilterByStyles();
+
         refreshButtons();
     }
 
@@ -45,6 +46,7 @@ public class FilterActivity extends AppCompatActivity {
     }
 
     private void refreshButtons() {
+
         mBinding.setAgeFilter(mAgeConditions);
         mBinding.setStyleFilter(mStyleConditions);
     }

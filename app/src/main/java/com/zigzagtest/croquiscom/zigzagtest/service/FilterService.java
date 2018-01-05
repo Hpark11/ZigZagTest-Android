@@ -111,6 +111,8 @@ final public class FilterService {
     }
 
     private boolean contains() {
+
+
         final int[] with = getFilterByAges();
         for (int element : with) {
             if (element == 1) return true;

@@ -20,25 +20,25 @@ public final class Shop {
     private int mScore;
 
     public Shop(String name, String url, String styles, int[] ages, int score) {
-        this.mName = name;
-        this.mUrl = url;
-        this.mStyles = styles.split(",");
-        this.mAges = ages;
-        this.mScore = score;
+        mName = name;
+        mUrl = url;
+        mStyles = styles.split(",");
+        mAges = ages;
+        mScore = score;
     }
 
     public Shop(JSONObject jsonObject) {
         try {
-            this.mName = jsonObject.getString("n");
-            this.mUrl = jsonObject.getString("u");
-            this.mStyles = jsonObject.getString("S").split(",");
+            mName = jsonObject.getString("n");
+            mUrl = jsonObject.getString("u");
+            mStyles = jsonObject.getString("S").split(",");
 
             JSONArray ageJsonArray = jsonObject.getJSONArray("A");
             for (int i = 0; i < mAges.length && i < ageJsonArray.length(); i++) {
                 mAges[i] = ageJsonArray.getInt(i);
             }
 
-            this.mScore = jsonObject.getInt("0");
+            mScore = jsonObject.getInt("0");
         } catch (JSONException ignored) {}
     }
 

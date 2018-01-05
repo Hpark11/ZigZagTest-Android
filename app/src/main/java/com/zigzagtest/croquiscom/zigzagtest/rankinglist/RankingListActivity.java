@@ -37,9 +37,8 @@ public class RankingListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.openFilter) {
             startActivityForResult(new Intent(this, FilterActivity.class), REQUEST_CODE_FILTERING_DONE);
-            return true;
         }
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
