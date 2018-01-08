@@ -17,15 +17,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:tag="@string/tag_shop_item"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:tag="@string/tag_shop_item">
 
         <TextView
             android:layout_width="52dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
-            android:text="@{rank}"
             android:gravity="center"
+            android:text="@{rank}"
             android:textSize="20sp"
             tools:text="0000" />
 
@@ -40,8 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/shopNameTextView"
@@ -61,20 +61,25 @@
                 <TextView
                     android:id="@+id/ageTextView"
                     style="@style/padded_label"
-                    interior="@{shop.representativeAgesData}"
+                    android:background="@drawable/shop_padded_text_frame_age"
+                    android:text="@{shop.representativeAgesData}"
                     android:textSize="@dimen/text_h6"
                     tools:text="10대" />
 
                 <TextView
+                    android:id="@+id/style1"
                     style="@style/padded_label"
                     interior="@{shop.firstStyle}"
                     android:layout_marginLeft="4dp"
+                    android:background="@drawable/shop_padded_text_frame_style"
                     tools:text="@string/style_luxury" />
 
                 <TextView
+                    android:id="@+id/style2"
                     style="@style/padded_label"
                     interior="@{shop.secondStyle}"
                     android:layout_marginLeft="2dp"
+                    android:background="@drawable/shop_padded_text_frame_style"
                     tools:text="@string/style_office_look" />
             </LinearLayout>
         </LinearLayout>

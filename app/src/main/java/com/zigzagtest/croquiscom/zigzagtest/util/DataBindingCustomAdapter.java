@@ -2,7 +2,6 @@ package com.zigzagtest.croquiscom.zigzagtest.util;
 
 import android.content.res.Resources;
 import android.databinding.BindingAdapter;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.CheckBox;
@@ -26,14 +25,14 @@ final public class DataBindingCustomAdapter {
         }
     }
 
-    @BindingAdapter("ageFilterChecked")
-    public static void checkAgeFilterCondition(CheckBox checkBox, final int[] ageFilter) {
+    @BindingAdapter("ageFilter")
+    public static void bindAgeFilter(CheckBox checkBox, final int[] ageFilter) {
         final int index = Integer.parseInt((String) checkBox.getTag());
         checkBox.setChecked(ageFilter[index] == 1);
     }
 
-    @BindingAdapter("styleFilterChecked")
-    public static void checkStyleFilterCondition(CheckBox checkBox, final Set styleFilter) {
+    @BindingAdapter("styleFilter")
+    public static void bindStyleFilter(CheckBox checkBox, final Set styleFilter) {
         final String item = String.valueOf(checkBox.getText());
         checkBox.setChecked(styleFilter.contains(item));
     }
@@ -49,10 +48,9 @@ final public class DataBindingCustomAdapter {
         final ShopStyle colors = FilterService.STYLES.get(text);
         final GradientDrawable drawable = (GradientDrawable) textView.getBackground();
         final Resources resources = textView.getContext().getResources();
-        final boolean isNotNull = colors != null;
 
-        drawable.setStroke(1, isNotNull ?  resources.getColor(colors.getKeyColor()) : Color.DKGRAY);
-        drawable.setColor(isNotNull ? resources.getColor(colors.getBackgroundColor()) : Color.TRANSPARENT);
-        textView.setTextColor(isNotNull ? resources.getColor(colors.getKeyColor()): Color.DKGRAY);
+        drawable.setStroke(1, resources.getColor(colors.getKeyColor()));
+        drawable.setColor(resources.getColor(colors.getBackgroundColor()));
+        textView.setTextColor(resources.getColor(colors.getKeyColor()));
     }
 }

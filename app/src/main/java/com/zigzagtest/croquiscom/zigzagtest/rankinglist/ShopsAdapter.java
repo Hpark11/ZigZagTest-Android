@@ -1,7 +1,9 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -55,7 +57,7 @@ final public class ShopsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        return position;
+        return position == 0 ? 0 : 1;
     }
 
     @Override

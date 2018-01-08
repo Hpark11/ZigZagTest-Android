@@ -45,6 +45,7 @@ public class FilterActivity extends AppCompatActivity {
     }
 
     private void refreshButtons() {
+
         mBinding.setAgeFilter(mAgeConditions);
         mBinding.setStyleFilter(mStyleConditions);
     }

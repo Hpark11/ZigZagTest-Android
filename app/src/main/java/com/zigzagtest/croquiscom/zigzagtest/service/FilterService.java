@@ -110,7 +110,7 @@ final public class FilterService {
         return result;
     }
 
-    private boolean contains() {
+    private boolean containsAgeCondition() {
         final int[] with = getFilterByAges();
         for (int element : with) {
             if (element == 1) return true;
@@ -126,7 +126,7 @@ final public class FilterService {
             result = filteredByStyles(result);
         }
 
-        if (contains()) {
+        if (containsAgeCondition()) {
             result = filteredByAges(result);
         }
 
