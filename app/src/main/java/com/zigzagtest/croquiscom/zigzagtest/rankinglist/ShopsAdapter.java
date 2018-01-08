@@ -1,9 +1,7 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -15,6 +13,9 @@ import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
 import java.util.ArrayList;
 
 final public class ShopsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final int SECTION_HEADER = 0;
+    private static final int SHOP_ITEM = 1;
+
     private String mWeek;
     private ArrayList<Shop> mOriginalShopItems;
     private ArrayList<Shop> mShopItems;
@@ -31,7 +32,7 @@ final public class ShopsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         switch (viewType) {
-            case 0:
+            case SECTION_HEADER:
                 return new HeaderViewHolder(ItemSectionHeaderBinding.inflate(layoutInflater, parent, false));
             default:
                 return new ItemViewHolder(ItemShopBinding.inflate(layoutInflater, parent, false));
@@ -41,7 +42,7 @@ final public class ShopsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
-            case 0:
+            case SECTION_HEADER:
                 ((HeaderViewHolder) holder).bindSectionHeader();
                 break;
             default:
@@ -57,7 +58,7 @@ final public class ShopsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        return position == 0 ? 0 : 1;
+        return position == 0 ? SECTION_HEADER : SHOP_ITEM;
     }
 
     @Override
