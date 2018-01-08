@@ -1,55 +1,99 @@
 package com.zigzagtest.croquiscom.zigzagtest.rankinglist;
 
-import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-/**
- * Created by croquiscom on 2017. 12. 20..
- */
+public final class Shop {
+    private static final String TAG = Shop.class.getSimpleName();
 
-public final class Shop{
-    public String name;
-    public String url;
-    public String[] style;
-    public int[] age = new int[7];
-    public int score;
-    private int matches = 0;
+    private String mName;
+    private String mUrl;
+    private String[] mStyles;
+    private int[] mAges = new int[7];
+    private int mScore;
 
-    public Shop(String name, String url, String style, int[] age, int score) {
-        this.name = name;
-        this.url = url;
-        this.style = style.split(",");
-        this.age = age;
-        this.score = score;
+    public Shop(String name, String url, String styles, int[] ages, int score) {
+        mName = name;
+        mUrl = url;
+        mStyles = styles.split(",");
+        mAges = ages;
+        mScore = score;
     }
 
     public Shop(JSONObject jsonObject) {
         try {
-            this.name = jsonObject.getString("n");
-            this.url = jsonObject.getString("u");
-            this.style = jsonObject.getString("S").split(",");
+            mName = jsonObject.getString("n");
+            mUrl = jsonObject.getString("u");
+            mStyles = jsonObject.getString("S").split(",");
 
             JSONArray ageJsonArray = jsonObject.getJSONArray("A");
-            for(int i = 0; i < age.length && i < ageJsonArray.length(); i++) {
-                age[i] = ageJsonArray.getInt(i);
+            for (int i = 0; i < mAges.length && i < ageJsonArray.length(); i++) {
+                mAges[i] = ageJsonArray.getInt(i);
             }
 
-            this.score = jsonObject.getInt("0");
-        } catch (JSONException e) {
-            e.printStackTrace();
+            mScore = jsonObject.getInt("0");
+        } catch (JSONException ignored) {}
+    }
+
+    public int getMatches(final Set<String> styles) {
+        int count = 0;
+        for(String s: styles) {
+            if(styles.contains(s)) { count++; }
         }
+        return count;
     }
 
-    public void setNumberOfMatches(int matches) {
-        this.matches = matches;
+    public String getFirstStyle() {
+        return mStyles.length > 0 ? mStyles[0] : "";
     }
 
-    public int getNumberOfMatches() {
-        return matches;
+    public String getSecondStyle() {
+        return mStyles.length > 1 ? mStyles[1] : "";
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public String getUrl() {
+        return mUrl;
+    }
+
+    public int getScore() {
+        return mScore;
+    }
+
+    public int[] getAges() {
+        return mAges;
+    }
+
+    public String[] getStyles() {
+        return mStyles;
+    }
+
+    public String getRepresentativeAgesData() {
+        List<String> groups = new ArrayList<>();
+
+        if(mAges[0] == 1) groups.add("10대");
+        for (int i = 1; i <= 3; i++) {
+            if (mAges[i] == 1) {
+                groups.add("20대");
+                break;
+            }
+        }
+        for (int i = 4; i < mAges.length; i++) {
+            if (mAges[i] == 1) {
+                groups.add("30대");
+                break;
+            }
+        }
+        return TextUtils.join(" ", groups);
     }
 }

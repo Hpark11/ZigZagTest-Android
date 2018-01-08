@@ -3,9 +3,52 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="filter_item">
+        <item name="android:layout_margin">@dimen/filter_item_base_margin</item>
+        <item name="android:layout_height">@dimen/filter_item_height</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:button">@android:color/transparent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/filter_item_base_padding</item>
+        <item name="android:textSize">@dimen/text_h4</item>
+    </style>
+
+    <style name="filter_item_age" parent="filter_item">
+        <item name="android:textColor">@color/age_filter_item_color_selector</item>
+        <item name="android:background">@drawable/age_filter_item_selector</item>
+    </style>
+
+    <style name="filter_item_style" parent="filter_item">
+        <item name="android:textColor">@color/style_filter_item_color_selector</item>
+        <item name="android:background">@drawable/style_filter_item_selector</item>
+        <item name="android:tag">1000</item>
+    </style>
+
+    <style name="section_header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/section_header_height</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/week_text</item>
+        <item name="android:background">@color/week_background</item>
+        <item name="android:textSize">@dimen/text_h3</item>
+        <item name="android:paddingLeft">@dimen/filter_item_base_padding</item>
+    </style>
+
+    <style name="padded_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/text_h5</item>
+    </style>
+
+    <style name="default_table_row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>

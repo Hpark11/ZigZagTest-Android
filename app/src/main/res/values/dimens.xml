@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dimen_section_header_height">32dp</dimen>
-    <dimen name="dimen_filter_item_height">32dp</dimen>
+    <dimen name="section_header_height">32dp</dimen>
+    <dimen name="filter_item_height">32dp</dimen>
     
-    <dimen name="dimen_filter_item_base_margin">4dp</dimen>
+    <dimen name="filter_item_base_margin">4dp</dimen>
+    <dimen name="filter_item_base_padding">6dp</dimen>
 
+    <dimen name="section_header_base_margin">8dp</dimen>
+    <dimen name="section_header_base_padding">8dp</dimen>
+
+    <dimen name="text_h3">18dp</dimen>
+    <dimen name="text_h4">14dp</dimen>
+    <dimen name="text_h5">12dp</dimen>
+    <dimen name="text_h6">11dp</dimen>
 </resources>

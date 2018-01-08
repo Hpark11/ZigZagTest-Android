@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="ageFilter"
+            type="int[]" />
+
+        <variable
+            name="styleFilter"
+            type="java.util.Set" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,400 +20,216 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_section_header_height"
-                    android:layout_marginBottom="4dp"
-                    android:background="@color/colorWeekBackground"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="6dp"
-                    android:text="@string/string_age_group"
-                    android:textColor="@color/colorWeekText" />
-
                 <TableLayout
                     android:id="@+id/mAgeFilterTableLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="*"
-                    >
+                    android:stretchColumns="*">
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        >
+                        android:layout_height="wrap_content">
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/age_filter_item_selector"
-                            android:onClick="onCheckFilterCondition"
-                            android:textColor="@color/colorFilterAges"
-                            android:textOff="@string/string_age_10s"
-                            android:textOn="@string/string_age_10s"
-                            android:tag="0"/>
-
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/age_filter_item_selector"
-                            android:onClick="onCheckFilterCondition"
-                            android:textColor="@color/colorFilterAges"
-                            android:textOff="@string/string_age_early_20s"
-                            android:textOn="@string/string_age_early_20s"
-                            android:tag="1"/>
-
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/age_filter_item_selector"
-                            android:onClick="onCheckFilterCondition"
-                            android:textColor="@color/colorFilterAges"
-                            android:textOff="@string/string_age_mid_20s"
-                            android:textOn="@string/string_age_mid_20s"
-                            android:tag="2"/>
-
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/age_filter_item_selector"
-                            android:onClick="onCheckFilterCondition"
-                            android:textColor="@color/colorFilterAges"
-                            android:textOff="@string/string_age_late_20s"
-                            android:textOn="@string/string_age_late_20s"
-                            android:tag="3"
-                            />
+                        <TextView
+                            style="@style/section_header"
+                            android:layout_span="4"
+                            android:text="@string/age_group"
+                            android:textColor="@color/week_text" />
                     </TableRow>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <TableRow style="@style/default_table_row">
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/age_filter_item_selector"
-                            android:onClick="onCheckFilterCondition"
-                            android:textColor="@color/colorFilterAges"
-                            android:textOff="@string/string_age_early_30s"
-                            android:textOn="@string/string_age_early_30s"
-                            android:tag="4"/>
-
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/age_filter_item_selector"
-                            android:onClick="onCheckFilterCondition"
-                            android:textColor="@color/colorFilterAges"
-                            android:textOff="@string/string_age_mid_30s"
-                            android:textOn="@string/string_age_mid_30s"
-                            android:tag="5"/>
-
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/age_filter_item_selector"
-                            android:onClick="onCheckFilterCondition"
-                            android:textColor="@color/colorFilterAges"
-                            android:textOff="@string/string_age_late_30s"
-                            android:textOn="@string/string_age_late_30s"
-                            android:tag="6"/>
-
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/age_filter_item_selector"
-                            android:textColor="@color/colorFilterAges"
-                            android:textOn="@string/string_age_late_30s"
-                            android:visibility="invisible"
-                            android:enabled="false"
+                        <CheckBox
+                            android:id="@+id/ageBox10s"
+                            style="@style/filter_item_age"
+                            ageFilter="@{ageFilter}"
                             android:tag="0"
-                            />
+                            android:text="@string/age_10s" />
+
+                        <CheckBox
+                            android:id="@+id/ageBoxEarly20s"
+                            style="@style/filter_item_age"
+                            ageFilter="@{ageFilter}"
+                            android:tag="1"
+                            android:text="@string/age_early_20s" />
+
+                        <CheckBox
+                            android:id="@+id/ageBoxMid20s"
+                            style="@style/filter_item_age"
+                            ageFilter="@{ageFilter}"
+                            android:tag="2"
+                            android:text="@string/age_mid_20s" />
+
+                        <CheckBox
+                            android:id="@+id/ageBoxLate20s"
+                            style="@style/filter_item_age"
+                            ageFilter="@{ageFilter}"
+                            android:tag="3"
+                            android:text="@string/age_late_20s" />
+                    </TableRow>
+
+                    <TableRow style="@style/default_table_row">
+
+                        <CheckBox
+                            android:id="@+id/ageBoxEarly30s"
+                            style="@style/filter_item_age"
+                            ageFilter="@{ageFilter}"
+                            android:tag="4"
+                            android:text="@string/age_early_30s" />
+
+                        <CheckBox
+                            android:id="@+id/ageBoxMid30s"
+                            style="@style/filter_item_age"
+                            ageFilter="@{ageFilter}"
+                            android:tag="5"
+                            android:text="@string/age_mid_30s" />
+
+                        <CheckBox
+                            android:id="@+id/ageBoxLate30s"
+                            style="@style/filter_item_age"
+                            ageFilter="@{ageFilter}"
+                            android:tag="6"
+                            android:text="@string/age_late_30s" />
                     </TableRow>
 
                 </TableLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_section_header_height"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@color/colorWeekBackground"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="6dp"
-                    android:text="@string/string_style"
-                    android:textColor="@color/colorWeekText" />
 
                 <TableLayout
-                    android:id="@+id/mStyleFilterTableLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*">
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <TableRow style="@style/default_table_row">
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_famine"
-                            android:textOn="@string/string_style_famine"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
+                        <TextView
+                            style="@style/section_header"
+                            android:layout_marginTop="@dimen/section_header_base_margin"
+                            android:layout_span="3"
+                            android:text="@string/style"
+                            android:textColor="@color/week_text" />
+                    </TableRow>
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_modern_cynical"
-                            android:textOn="@string/string_style_modern_cynical"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                        />
+                    <TableRow style="@style/default_table_row">
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_simple_basic"
-                            android:textOn="@string/string_style_simple_basic"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
+                        <CheckBox
+                            android:id="@+id/styleBoxFamine"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_famine" />
 
+                        <CheckBox
+                            android:id="@+id/styleBoxModernCynical"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_modern_cynical" />
+
+                        <CheckBox
+                            android:id="@+id/styleBoxSimpleBasic"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_simple_basic" />
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_lovely"
-                            android:textOn="@string/string_style_lovely"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
+                        <CheckBox
+                            android:id="@+id/styleBoxLovely"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_lovely" />
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_unique"
-                            android:textOn="@string/string_style_unique"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
+                        <CheckBox
+                            android:id="@+id/styleBoxUnique"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_unique" />
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_missi"
-                            android:textOn="@string/string_style_missi"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
-
+                        <CheckBox
+                            android:id="@+id/styleBoxMissi"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_missi" />
                     </TableRow>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <TableRow style="@style/default_table_row">
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_campus_look"
-                            android:textOn="@string/string_style_campus_look"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
+                        <CheckBox
+                            android:id="@+id/styleBoxCampusLook"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_campus_look" />
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_vintage"
-                            android:textOn="@string/string_style_vintage"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
+                        <CheckBox
+                            android:id="@+id/styleBoxVintage"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_vintage" />
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_sexy_glam"
-                            android:textOn="@string/string_style_sexy_glam"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
-
+                        <CheckBox
+                            android:id="@+id/styleBoxSexyGlam"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_sexy_glam" />
                     </TableRow>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <TableRow style="@style/default_table_row">
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_school_look"
-                            android:textOn="@string/string_style_school_look"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
+                        <CheckBox
+                            android:id="@+id/styleBoxSchoolLook"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:checked="true"
+                            android:text="@string/style_school_look" />
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_romantic"
-                            android:textOn="@string/string_style_romantic"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
+                        <CheckBox
+                            android:id="@+id/styleBoxRomantic"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_romantic" />
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_office_look"
-                            android:textOn="@string/string_style_office_look"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
-
+                        <CheckBox
+                            android:id="@+id/styleBoxOfficeLook"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_office_look" />
                     </TableRow>
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <TableRow style="@style/default_table_row">
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_office_look"
-                            android:textOn="@string/string_style_office_look"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
+                        <CheckBox
+                            android:id="@+id/styleBoxLuxury"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_luxury" />
 
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:textColor="@color/colorFilterStyles"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:textOff="@string/string_style_luxury"
-                            android:textOn="@string/string_style_luxury"
-                            android:onClick="onCheckFilterCondition"
-                            android:tag="1000"
-                            />
-
-                        <ToggleButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/dimen_filter_item_height"
-                            android:layout_weight="1"
-                            android:layout_margin="@dimen/dimen_filter_item_base_margin"
-                            android:background="@drawable/style_filter_item_selector"
-                            android:visibility="invisible"
-                            android:enabled="false"
-                            android:tag="1000"
-                            />
+                        <CheckBox
+                            android:id="@+id/styleBoxHollywood"
+                            style="@style/filter_item_style"
+                            styleFilter="@{styleFilter}"
+                            android:text="@string/style_hollywood" />
                     </TableRow>
                 </TableLayout>
-
             </LinearLayout>
         </ScrollView>
 
 
         <Button
-            android:id="@+id/mConfirmButton"
+            android:id="@+id/confirmButton"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/colorFilterConfirm"
-            android:onClick="onConfirmFilter"
-            android:text="@string/string_confirm"
-            android:textColor="@color/colorWhite"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_weight="0"
-            />
-
+            android:background="@color/filter_confirm"
+            android:text="@string/confirm"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
     </LinearLayout>
 </layout>

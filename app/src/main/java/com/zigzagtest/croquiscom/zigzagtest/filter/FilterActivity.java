@@ -7,89 +7,53 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.ToggleButton;
+
+import android.widget.CheckBox;
 
 import com.zigzagtest.croquiscom.zigzagtest.R;
 import com.zigzagtest.croquiscom.zigzagtest.databinding.ActivityFilterBinding;
 import com.zigzagtest.croquiscom.zigzagtest.service.FilterService;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
-/**
- * Created by croquiscom on 2017. 12. 20..
- */
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FilterActivity extends AppCompatActivity {
-    private static final String TAG = FilterActivity.class.getSimpleName();
-    private ActivityFilterBinding b;
-    private final String STYLE_FILTER_TAG = "1000";
-
+    private ActivityFilterBinding mBinding;
     private FilterService mFilterService;
     private int[] mAgeConditions = new int[FilterService.AGES.length];
-    private Set<String> mStyleConditions = new TreeSet<>();
+    private Set<String> mStyleConditions = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        b = DataBindingUtil.setContentView(this, R.layout.activity_filter);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_filter);
+        ButterKnife.bind(this);
 
         mFilterService = new FilterService(this);
         mAgeConditions = mFilterService.getFilterByAges();
         mStyleConditions = mFilterService.getFilterByStyles();
-
-        loadPreviousFilterItemSetting();
-    }
-
-    private void loadPreviousFilterItemSetting() {
-        for(int i = 0; i < b.mAgeFilterTableLayout.getChildCount(); i++ ) {
-            TableRow row = (TableRow) b.mAgeFilterTableLayout.getChildAt(i);
-            for(int j = 0; j < row.getChildCount(); j++) {
-                ToggleButton button = (ToggleButton)row.getChildAt(j);
-                if(button.getVisibility() == View.VISIBLE && mAgeConditions[Integer.parseInt((String)button.getTag())] == 1) {
-                    button.setChecked(true);
-                    onCheckFilterCondition(button);
-                }
-            }
-        }
-
-        for(int i = 0; i < b.mStyleFilterTableLayout.getChildCount(); i++) {
-            TableRow row = (TableRow) b.mStyleFilterTableLayout.getChildAt(i);
-            for(int j = 0; j < row.getChildCount(); j++) {
-                ToggleButton button = (ToggleButton)row.getChildAt(j);
-                if(button.getVisibility() == View.VISIBLE && mStyleConditions.contains(button.getTextOn())) {
-                    button.setChecked(true);
-                    onCheckFilterCondition(button);
-                }
-            }
-        }
+        refreshButtons();
     }
 
     private void initializeFilter() {
         mAgeConditions = new int[FilterService.AGES.length];
-        mStyleConditions = new TreeSet<>();
-
-        uncheckAllItems(b.mAgeFilterTableLayout);
-        uncheckAllItems(b.mStyleFilterTableLayout);
+        mStyleConditions = new HashSet<>();
+        refreshButtons();
     }
 
-    private void uncheckAllItems(TableLayout tableLayout) {
-        for(int i = 0; i < tableLayout.getChildCount(); i++) {
-            TableRow row = (TableRow) tableLayout.getChildAt(i);
-            for(int j = 0; j < row.getChildCount(); j++) {
-                final ToggleButton child = (ToggleButton)row.getChildAt(j);
-                child.setChecked(false);
-                onCheckFilterCondition(child);
-            }
-        }
+    private void refreshButtons() {
+
+        mBinding.setAgeFilter(mAgeConditions);
+        mBinding.setStyleFilter(mStyleConditions);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_filter, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
@@ -102,33 +66,30 @@ public class FilterActivity extends AppCompatActivity {
                 finish();
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
+    @OnClick(R.id.confirmButton)
     public void onConfirmFilter(View view) {
         mFilterService.setFilter(mAgeConditions, mStyleConditions);
         setResult(RESULT_OK, new Intent());
         finish();
     }
 
-    public void onCheckFilterCondition(View view) {
-        ToggleButton button = (ToggleButton)view;
+    @OnClick({R.id.ageBox10s, R.id.ageBoxEarly20s, R.id.ageBoxMid20s, R.id.ageBoxLate20s, R.id.ageBoxEarly30s, R.id.ageBoxMid30s})
+    public void onCheckAgeFilter(CheckBox checkBox) {
+        final int index = Integer.parseInt((String) checkBox.getTag());
+        mAgeConditions[index] = checkBox.isChecked() ? 1 : 0;
+    }
 
-        if(button.isChecked()) {
-            button.setTextColor(getResources().getColor(R.color.colorWhite));
-            if(button.getTag().equals(STYLE_FILTER_TAG)) {
-                mStyleConditions.add(String.valueOf(button.getTextOn()));
-            } else {
-                mAgeConditions[Integer.parseInt((String)button.getTag())] = 1;
-            }
+    @OnClick({R.id.styleBoxFamine, R.id.styleBoxModernCynical, R.id.styleBoxSimpleBasic, R.id.styleBoxLovely, R.id.styleBoxUnique,
+            R.id.styleBoxMissi, R.id.styleBoxCampusLook, R.id.styleBoxVintage, R.id.styleBoxSexyGlam, R.id.styleBoxSchoolLook,
+            R.id.styleBoxRomantic, R.id.styleBoxOfficeLook, R.id.styleBoxLuxury, R.id.styleBoxHollywood})
+    public void onCheckStyleFilter(CheckBox checkBox) {
+        if (checkBox.isChecked()) {
+            mStyleConditions.add(String.valueOf(checkBox.getText()));
         } else {
-            if(button.getTag().equals(STYLE_FILTER_TAG)) {
-                button.setTextColor(getResources().getColor(R.color.colorFilterStyles));
-                mStyleConditions.remove(String.valueOf(button.getTextOn()));
-            } else {
-                button.setTextColor(getResources().getColor(R.color.colorFilterAges));
-                mAgeConditions[Integer.parseInt((String)button.getTag())] = 0;
-            }
+            mStyleConditions.remove(String.valueOf(checkBox.getText()));
         }
     }
 }
